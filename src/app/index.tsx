@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
 import { ROUTE } from "@/shared/consts";
-import { setisMobile } from "@/shared/lib";
+import { registNotifyPermission, setisMobile } from "@/shared/lib";
 import "@/shared/styles/index.css";
 import Layout from "@/wigets/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -18,6 +18,7 @@ const App: FC = () => {
   useEffect(() => {
     setIsClient(true);
     setisMobile();
+    registNotifyPermission();
   }, []);
 
   if (!isClient) {

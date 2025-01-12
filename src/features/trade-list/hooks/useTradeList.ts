@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRegistSavedApart, useSavedAparts } from "@/entities/apart";
 import { useRemoveSavedApart } from "@/entities/apart/models/hooks";
 import { TradeItem, useTradesQuery, useTradesQueryKey } from "@/entities/trade";
+import { notification } from "@/shared/lib";
 
 import { PER_PAGE } from "../consts/table";
 import { Item, OrderType } from "../models/types";
@@ -65,6 +66,8 @@ export const useTradeList = (): Return => {
       address: tradeItem.address,
       apartName: tradeItem.apartName,
     });
+
+    notification("저장 완료", `[${tradeItem.apartName}] 저장 목록에 추가되었습니다.`);
   };
 
   const onRemoveApart = (tradeItem: TradeItem) => {
@@ -73,6 +76,8 @@ export const useTradeList = (): Return => {
       address: tradeItem.address,
       apartName: tradeItem.apartName,
     });
+
+    notification("삭제 완료", `[${tradeItem.apartName}] 저장 목록에서 삭제되었습니다.`);
   };
 
   return { isLoading, total, page, order, items, onChangePage, onChangeOrder, onSaveApart, onRemoveApart };

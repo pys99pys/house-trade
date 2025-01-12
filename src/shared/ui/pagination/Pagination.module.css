@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  list-style: none;
+  column-gap: 0.5rem;
+}
+
+.pagination button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--button-color);
+  white-space: nowrap;
+  transition: background-color 300ms ease;
+}
+
+.pagination button:hover {
+  background-color: var(--button-hover-color);
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.pagination.small button {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.85rem;
+}

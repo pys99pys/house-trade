@@ -1,0 +1,63 @@
+.font-bold {
+  font-weight: 700;
+}
+.font-small {
+  font-size: var(--font-small-size);
+}
+.text-primary {
+  color: var(--primary-color);
+}
+
+.border {
+  border: 1px solid var(--border-color);
+}
+.border.radius {
+  border-radius: var(--border-radius);
+}
+
+.flex {
+  display: flex;
+}
+.flex.wrap {
+  flex-wrap: wrap;
+}
+.flex.direction-column {
+  flex-direction: column;
+}
+.flex.justify-content-center {
+  justify-content: center;
+}
+.flex.justify-content-between {
+  justify-content: space-between;
+}
+.flex.justify-content-start {
+  justify-content: flex-start;
+}
+.flex.justify-content-end {
+  justify-content: flex-end;
+}
+.flex.align-items-center {
+  align-items: center;
+}
+.flex.align-items-between {
+  align-items: space-between;
+}
+.flex.align-items-start {
+  align-items: flex-start;
+}
+.flex.align-items-end {
+  align-items: flex-end;
+}
+
+.box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--white-color);
+}
+.box.activable,
+.box.hoverable {
+  transition: border-color 300ms ease;
+}
+.box.activable.active {
+  border-color: var(--primary-color);
+}

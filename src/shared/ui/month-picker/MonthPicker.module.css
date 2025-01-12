@@ -1,0 +1,121 @@
+.monthPicker {
+  width: 100%;
+  min-width: 12.5rem;
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  background-color: var(--white-color);
+  transition: border-color 300ms ease;
+}
+
+.monthPicker .inputWrap {
+  width: 100%;
+  height: calc(var(--form-height) - 2px);
+  display: flex;
+  align-items: center;
+}
+
+.monthPicker .inputWrap .textWrap,
+.monthPicker .inputWrap .buttonWrap {
+  height: 100%;
+}
+
+.monthPicker .inputWrap .textWrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.monthPicker .inputWrap .buttonWrap {
+  width: 2rem;
+  display: flex;
+}
+
+.monthPicker .inputWrap .buttonWrap:first-child {
+  border-right: 1px solid var(--border-color);
+}
+
+.monthPicker .inputWrap .buttonWrap:not(:first-child) {
+  width: 2rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.monthPicker .inputWrap .buttonWrap button {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  transition: background-color 300ms ease;
+}
+
+.monthPicker .inputWrap .buttonWrap button:hover {
+  background-color: var(--button-color);
+  cursor: pointer;
+}
+
+.monthPicker .inputWrap .iconWrap {
+  transform: translateY(1px);
+}
+
+.monthPicker .picker {
+  min-width: calc(100%);
+  padding: 1rem;
+  position: absolute;
+  top: calc(100% + 3px);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  background-color: var(--white-color);
+  z-index: 10;
+}
+
+.monthPicker .picker .yearPickerWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.monthPicker .picker .yearPickerWrap button {
+  border: none;
+  background: none;
+  font-size: 0.95rem;
+}
+
+.monthPicker .picker .monthPickerWrap {
+  margin-top: 0.5rem;
+}
+
+.monthPicker .picker .monthPickerWrap ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.monthPicker .picker .monthPickerWrap ul li {
+  width: 33.3333%;
+  padding: 0.25rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.monthPicker .picker .monthPickerWrap button {
+  border: none;
+  background: none;
+}
+
+.monthPicker.active {
+  border-color: var(--primary-color);
+}
+
+@media (max-width: 640px) {
+  .monthPicker .inputWrap {
+    height: calc(var(--mobile-form-height) - 2px);
+  }
+}

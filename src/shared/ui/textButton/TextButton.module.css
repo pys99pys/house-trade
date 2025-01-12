@@ -1,0 +1,15 @@
+.textButton {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: var(--font-small-size);
+  text-decoration: underline;
+}
+
+.textButton.primary {
+  color: var(--primary-color);
+}
+
+.textButton.red {
+  color: var(--red-color);
+}

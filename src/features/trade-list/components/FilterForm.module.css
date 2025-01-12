@@ -1,0 +1,50 @@
+.filterForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterForm .summry {
+  display: flex;
+  column-gap: 0.25rem;
+}
+
+.filterForm .summry strong {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.filterForm .form {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.filterForm .form .inputWrap {
+  width: 12.5rem;
+}
+
+.filterForm .form .buttonWrap {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .filterForm {
+    flex-direction: column;
+  }
+
+  .filterForm .form {
+    width: 100%;
+    margin-top: 0.75rem;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
+  .filterForm .form .inputWrap {
+    width: 100%;
+  }
+
+  .filterForm .form .buttonWrap button {
+    flex: 1;
+  }
+}

@@ -1,0 +1,21 @@
+.select {
+  width: 100%;
+  height: var(--form-height);
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  outline: none;
+  transition: border-color 300ms ease;
+}
+
+.select:focus {
+  border-color: var(--primary-color);
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .select {
+    height: var(--mobile-form-height);
+  }
+}

@@ -1,0 +1,11 @@
+.listRow {
+  padding: 1rem;
+}
+
+.listRow .apartInfoWrap {
+  row-gap: 0.25rem;
+}
+
+.listRow .priceInfoWrap {
+  row-gap: 0.25rem;
+}

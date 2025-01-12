@@ -1,0 +1,32 @@
+.tableRow {
+  padding: 0 0.75rem;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.25fr;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  transition: border-color 300ms ease;
+}
+
+.tableRow.active {
+  border-color: var(--primary-color);
+}
+
+.tableRow .cell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.25rem;
+  row-gap: 0.5rem;
+  padding: 1.5rem 0.75rem;
+  box-sizing: border-box;
+}
+
+.tableRow .cell .highlight {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.tableRow .cell small {
+  font-size: 0.85rem;
+}

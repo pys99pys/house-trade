@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+body {
+  background-color: #fbfbfb;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  color: var(--font-color);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: var(--mobile-font-size);
+  }
+}

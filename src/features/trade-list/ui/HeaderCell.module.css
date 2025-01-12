@@ -1,0 +1,29 @@
+.headerCell button {
+  width: 100%;
+  padding: 1.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.headerCell button:hover {
+  cursor: pointer;
+}
+
+.headerCell button span.asc,
+.headerCell button span.desc {
+  transition: transform 500ms ease;
+}
+
+.headerCell button span.asc {
+  transform: rotate(-180deg) translateY(-2px);
+}
+
+.headerCell button span.desc {
+  transform: rotate(0deg) translateY(-2px);
+}

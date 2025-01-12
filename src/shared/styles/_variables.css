@@ -1,0 +1,33 @@
+:root {
+  --container-width: 1024px;
+  --header-height: 5rem;
+
+  --font-size: 12.2px;
+  --font-small-size: 0.85rem;
+
+  --form-height: 3.25rem;
+  --form-small-height: 2.75rem;
+  --form-xsmall-height: 2.25rem;
+
+  --border-radius: 2px;
+  --border-color: #ddd;
+
+  --white-color: #fff;
+  --font-color: #333;
+  --font-gray-color: #777;
+  --button-color: #e9e9e9;
+  --button-hover-color: #dedede;
+  --primary-color: #6366f1;
+  --primary-hover-color: #4f46e5;
+  --yellow-color: #fcd34d;
+  --yellow-hover-color: #fbbf24;
+  --red-color: #ef4444;
+  --red-hover-color: #dc2626;
+
+  --mobile-width: 640px;
+  --mobile-header-height: 6rem;
+  --mobile-font-size: 11.5px;
+  --mobile-form-height: 3rem;
+  --mobile-form-small-height: 2.5rem;
+  --mobile-form-xsmall-height: 2rem;
+}

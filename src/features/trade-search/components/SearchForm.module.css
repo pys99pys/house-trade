@@ -1,0 +1,46 @@
+.searchForm {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.searchForm .selectWrap {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.searchForm .selectWrap .cityNameSelectWrap {
+  width: 10rem;
+}
+
+.searchForm .selectWrap .regionCodeSelectWrap {
+  width: 10rem;
+}
+
+.searchForm .monthPickerWrap {
+  width: 15rem;
+}
+
+.searchForm .buttonWrap {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .searchForm {
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
+  .searchForm .selectWrap .cityNameSelectWrap,
+  .searchForm .selectWrap .regionCodeSelectWrap {
+    flex: 1;
+  }
+
+  .searchForm .monthPickerWrap {
+    width: 100%;
+  }
+
+  .searchForm .buttonWrap button {
+    flex: 1;
+  }
+}

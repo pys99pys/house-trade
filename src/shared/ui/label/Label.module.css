@@ -1,0 +1,13 @@
+.label {
+  column-gap: 0.25rem;
+}
+
+.label span {
+  color: var(--font-gray-color);
+  transform: translateY(1px);
+  transition: color 300ms ease;
+}
+
+.label span:hover {
+  color: var(--red-color);
+}

@@ -1,4 +1,4 @@
 export interface LocationState {
-  regionCode?: string;
-  apartName?: string;
+  regionCode: string;
+  apartName: string;
 }

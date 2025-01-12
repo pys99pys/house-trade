@@ -1,8 +1,9 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { SavedApartItem, useSavedAparts } from "@/entities/apart";
 import { useRemoveSavedApart } from "@/entities/apart/models/hooks";
-import { useChangeLocationState } from "@/entities/location";
+import { createLocationState } from "@/entities/location";
 import { ROUTE } from "@/shared/consts";
 
 import { Item } from "../models/types";
@@ -14,8 +15,10 @@ interface Return {
 }
 
 export const useApartList = (): Return => {
+  const navigate = useNavigate();
+
   const removeSavedApart = useRemoveSavedApart();
-  const changeLocationState = useChangeLocationState();
+
   const savedAparts = useSavedAparts();
 
   const apartItems = useMemo(() => {
@@ -39,7 +42,12 @@ export const useApartList = (): Return => {
   };
 
   const onClick = (item: SavedApartItem) => {
-    changeLocationState(ROUTE.TRADES, { regionCode: item.regionCode, apartName: item.apartName });
+    navigate(ROUTE.TRADES, {
+      state: createLocationState({
+        regionCode: item.regionCode,
+        apartName: item.apartName,
+      }),
+    });
   };
 
   return { apartItems, onClick, onRemove };

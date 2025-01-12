@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { useLocationStateChangeEffect } from "@/entities/location";
-import { useTradesQuery } from "@/entities/trade";
+import { getLocationState, hasLocationState } from "@/entities/location";
+import { useTradesQueryKey } from "@/entities/trade";
+import { useStateEffect } from "@/shared/hooks";
 
 import { filterAtom } from "../models/stores";
 import { useSetFilter } from "./useFilterAtom";
@@ -16,25 +18,28 @@ interface Return {
 export const useFilterState = () => useRecoilValue(filterAtom);
 
 export const useFilterForm = (): Return => {
-  const { dataUpdatedAt } = useTradesQuery();
+  const location = useLocation();
+  const locationState = getLocationState(location.state);
+  const { cityCode } = useTradesQueryKey();
   const setFilter = useSetFilter();
 
-  const apartNameLocationStateRef = useRef("");
+  const prevCityCode = useRef(cityCode);
 
-  useEffect(() => {
-    if (apartNameLocationStateRef.current) {
-      setFilter((prev) => ({ ...prev, apartName: apartNameLocationStateRef.current }));
-      apartNameLocationStateRef.current = "";
+  useStateEffect(() => {
+    const hasApartNameState = hasLocationState(locationState, "apartName");
 
-      return;
+    if (!hasApartNameState && prevCityCode.current !== cityCode) {
+      setFilter((prev) => ({ ...prev, apartName: "" }));
     }
 
-    setFilter((prev) => ({ ...prev, apartName: "" }));
-  }, [dataUpdatedAt, setFilter]);
+    prevCityCode.current = cityCode;
+  }, [cityCode]);
 
-  useLocationStateChangeEffect((state) => {
-    apartNameLocationStateRef.current = state.apartName ?? "";
-  });
+  useStateEffect(() => {
+    if (locationState?.apartName) {
+      setFilter((prev) => ({ ...prev, apartName: locationState.apartName }));
+    }
+  }, [locationState]);
 
   const onChangeApartName = (apartName: string) => {
     setFilter((prev) => ({ ...prev, apartName }));

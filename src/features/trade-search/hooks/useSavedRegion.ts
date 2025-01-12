@@ -1,12 +1,12 @@
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { createLocationState } from "@/entities/location";
 import { getCityNameFromRegionCode, getRegionNameFromRegionCode } from "@/entities/region";
-import { useSetTradesQueryKey } from "@/entities/trade";
-import { STORAGE_KEY } from "@/shared/consts";
+import { ROUTE, STORAGE_KEY } from "@/shared/consts";
 import { setValue } from "@/shared/lib";
 
-import { calculateYearMonth } from "../lib/calculators";
-import { useSavedRegionState, useSearchFormState, useSetSavedRegion, useSetSearchForm } from "../models/hooks";
+import { useSavedRegionState, useSearchFormState, useSetSavedRegion } from "../models/hooks";
 
 interface Return {
   isRegistered: boolean;
@@ -30,11 +30,11 @@ const sortRegionCodes = (regionCodes: string[]): string[] => {
 };
 
 export const useSavedRegion = (): Return => {
+  const navigate = useNavigate();
+
   const searchForm = useSearchFormState();
   const savedRegionCodes = useSavedRegionState();
 
-  const setTradesQueryKey = useSetTradesQueryKey();
-  const setSearchForm = useSetSearchForm();
   const setSavedRegion = useSetSavedRegion();
 
   const isRegistered = useMemo(
@@ -61,17 +61,8 @@ export const useSavedRegion = (): Return => {
   };
 
   const onSelect = (regionCode: string) => {
-    const cityName = getCityNameFromRegionCode(regionCode);
-
-    setSearchForm((prev) => ({
-      ...prev,
-      cityName,
-      regionCode,
-    }));
-
-    setTradesQueryKey({
-      cityCode: regionCode,
-      yearMonth: calculateYearMonth(searchForm.year, searchForm.month),
+    navigate(ROUTE.TRADES, {
+      state: createLocationState({ regionCode }),
     });
   };
 

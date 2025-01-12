@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const TradesPage = lazy(() => import("@/pages/trades-page"));
 const ApartsPage = lazy(() => import("@/pages/aparts-page"));
+const MigrationPage = lazy(() => import("@/pages/migration-page"));
 
 const App: FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -31,6 +32,7 @@ const App: FC = () => {
             <Routes>
               <Route path={ROUTE.TRADES} element={<TradesPage />} />
               <Route path={ROUTE.APARTS} element={<ApartsPage />} />
+              <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
               <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
             </Routes>
           </Layout>

@@ -1,0 +1,12 @@
+.migrationForm {
+  row-gap: 2rem;
+}
+
+.migrationForm .textarea {
+  width: 100%;
+  height: 20rem;
+}
+
+.migrationForm .saveButton {
+  margin-top: 0.5rem;
+}

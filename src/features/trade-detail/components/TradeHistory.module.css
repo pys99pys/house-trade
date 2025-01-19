@@ -4,11 +4,11 @@
 
 .tradeHistory .row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.75fr 1fr;
 }
 
 .tradeHistory .row > span {
-  padding: 1.25rem 1.25rem;
+  padding: 1.25rem;
 }
 
 .tradeHistory .header {
@@ -16,7 +16,7 @@
 }
 
 .tradeHistory .body {
-  max-height: 30rem;
+  max-height: 80vh;
   margin-top: 0.5rem;
   row-gap: 0.5rem;
   overflow-y: auto;
@@ -29,4 +29,14 @@
 
 .tradeHistory .body > div {
   row-gap: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .tradeHistory .row > span {
+    padding: 0.75rem;
+  }
+
+  .tradeHistory .body h2 {
+    padding: 0.75rem;
+  }
 }

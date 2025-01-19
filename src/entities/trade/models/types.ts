@@ -20,3 +20,22 @@ export interface TradesQueryResponse {
   count: number;
   list: TradeItem[];
 }
+
+export interface TradeQueryRequest {
+  cityCode: string;
+  apartName: string;
+}
+
+export interface TradeQueryResponse {
+  address: string;
+  housholdsCount: string;
+  parking: string;
+  floorAreaRatio: number;
+  buildingCoverageRatio: number;
+  tradeItems: {
+    tradeDate: string;
+    size: number;
+    floor: number;
+    tradeAmount: number;
+  }[];
+}

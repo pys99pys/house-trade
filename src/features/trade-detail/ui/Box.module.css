@@ -1,4 +1,10 @@
 .box {
-  padding: 1.5rem;
+  padding: 1.25rem;
   row-gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .box {
+    padding: 1rem;
+  }
 }

@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import { FC } from "react";
 
+import { calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
 import { TextButton } from "@/shared/ui";
 
 import { Item } from "../models/types";
-import { calculateApartInfo, calculateFlatSize, calculateTradeAmountFormat } from "../services/calculators";
+import { calculateApartInfo } from "../services/calculators";
 import css from "./ListRow.module.css";
 
 interface ListRowProps {

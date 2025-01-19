@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
-import { calculateFlatSize } from "../services/calculators";
+import { calculateFlatSize } from "@/entities/trade";
+
 import { useFilteredList } from "./useFilteredList";
 
 interface Return {

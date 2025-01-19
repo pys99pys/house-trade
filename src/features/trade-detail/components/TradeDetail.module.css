@@ -1,8 +1,7 @@
 .tradeDetail {
-  row-gap: 1rem;
+  row-gap: 0.75rem;
 }
 
-.tradeDetail > h1 {
-  padding: 1.5rem;
+.tradeDetail h1 {
   font-size: 1.25rem;
 }

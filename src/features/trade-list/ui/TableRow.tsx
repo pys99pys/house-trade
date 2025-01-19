@@ -1,15 +1,11 @@
 import classNames from "classnames";
 import { FC } from "react";
 
+import { calculateAreaSize, calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
 import { TextButton } from "@/shared/ui";
 
 import { Item } from "../models/types";
-import {
-  calculateApartInfo,
-  calculateAreaSize,
-  calculateFlatSize,
-  calculateTradeAmountFormat,
-} from "../services/calculators";
+import { calculateApartInfo } from "../services/calculators";
 import css from "./TableRow.module.css";
 
 interface TableRowProps {

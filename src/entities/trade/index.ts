@@ -1,2 +1,3 @@
-export { type TradeItem } from "./models/types";
-export { useTradesQueryKey, useSetTradesQueryKey, useTradesQuery } from "./models/hooks";
+export { type TradeItem, type TradeQueryResponse } from "./models/types";
+export { useTradesQueryKey, useSetTradesQueryKey, useTradesQuery, useTradeQuery } from "./models/hooks";
+export * from "./lib/calculators";

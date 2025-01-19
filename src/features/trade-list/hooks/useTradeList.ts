@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useRegistSavedApart, useSavedAparts } from "@/entities/apart";
 import { useRemoveSavedApart } from "@/entities/apart/models/hooks";
 import { TradeItem, useTradesQuery, useTradesQueryKey } from "@/entities/trade";
+import { ROUTE } from "@/shared/consts";
 import { notification } from "@/shared/lib";
 
 import { PER_PAGE } from "../consts/table";
@@ -19,11 +21,14 @@ interface Return {
   items: Item[];
   onChangePage: (page: number) => void;
   onChangeOrder: (key: OrderType[0]) => void;
+  onClickRow: (tradeItem: TradeItem) => void;
   onSaveApart: (tradeItem: TradeItem) => void;
   onRemoveApart: (tradeItem: TradeItem) => void;
 }
 
 export const useTradeList = (): Return => {
+  const navigate = useNavigate();
+
   const { isLoading } = useTradesQuery();
   const { filteredList } = useFilteredList();
   const filter = useFilterState();
@@ -60,6 +65,10 @@ export const useTradeList = (): Return => {
     setOrder((prev) => [key, key === prev[0] ? (prev[1] === "asc" ? "desc" : "asc") : "asc"]);
   };
 
+  const onClickRow = (tradeItem: TradeItem) => {
+    navigate(`${ROUTE.APART}/${tradesQueryKey.cityCode}/${tradeItem.apartName}`);
+  };
+
   const onSaveApart = (tradeItem: TradeItem) => {
     registSavedApart({
       regionCode: tradesQueryKey.cityCode,
@@ -80,5 +89,5 @@ export const useTradeList = (): Return => {
     notification("삭제 완료", `[${tradeItem.apartName}] 저장 목록에서 삭제되었습니다.`);
   };
 
-  return { isLoading, total, page, order, items, onChangePage, onChangeOrder, onSaveApart, onRemoveApart };
+  return { isLoading, total, page, order, items, onChangePage, onChangeOrder, onClickRow, onSaveApart, onRemoveApart };
 };

@@ -1,0 +1,15 @@
+.tradeInfo {
+  width: 100%;
+}
+
+.tradeInfo th {
+  width: 20%;
+  min-width: 8.5rem;
+  background-color: #f9f9f9;
+}
+
+.tradeInfo th,
+.tradeInfo td {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+}

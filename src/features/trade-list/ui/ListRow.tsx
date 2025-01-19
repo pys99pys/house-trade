@@ -9,11 +9,12 @@ import css from "./ListRow.module.css";
 
 interface ListRowProps {
   item: Item;
+  onClick: () => void;
   onSave: () => void;
   onRemove: () => void;
 }
 
-const ListRow: FC<ListRowProps> = ({ item, onSave, onRemove }) => {
+const ListRow: FC<ListRowProps> = ({ item, onClick, onSave, onRemove }) => {
   const apartInfo = calculateApartInfo(item);
 
   return (
@@ -21,6 +22,7 @@ const ListRow: FC<ListRowProps> = ({ item, onSave, onRemove }) => {
       className={classNames(css.listRow, "box activable flex justify-content-between", {
         active: item.isSaved,
       })}
+      onClick={onClick}
     >
       <div className={classNames(css.apartInfoWrap, "flex direction-column")}>
         <span className="font-bold">

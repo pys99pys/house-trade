@@ -8,6 +8,11 @@
   transition: border-color 300ms ease;
 }
 
+.tableRow:hover {
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+}
+
 .tableRow.active {
   border-color: var(--primary-color);
 }

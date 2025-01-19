@@ -14,15 +14,16 @@ import css from "./TableRow.module.css";
 
 interface TableRowProps {
   item: Item;
+  onClick: () => void;
   onSave: () => void;
   onRemove: () => void;
 }
 
-const TableRow: FC<TableRowProps> = ({ item, onSave, onRemove }) => {
+const TableRow: FC<TableRowProps> = ({ item, onClick, onSave, onRemove }) => {
   const apartInfo = calculateApartInfo(item);
 
   return (
-    <div className={classNames(css.tableRow, { [css.active]: item.isSaved })}>
+    <div className={classNames(css.tableRow, { [css.active]: item.isSaved })} onClick={onClick}>
       <div className={css.cell}>{item.tradeDate}</div>
       <div className={css.cell}>{item.address}</div>
       <div className={css.cell}>

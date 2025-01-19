@@ -1,0 +1,32 @@
+.tradeHistory {
+  row-gap: 1.25rem;
+}
+
+.tradeHistory .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.tradeHistory .row > span {
+  padding: 1.25rem 1.25rem;
+}
+
+.tradeHistory .header {
+  background-color: #f9f9f9;
+}
+
+.tradeHistory .body {
+  max-height: 30rem;
+  margin-top: 0.5rem;
+  row-gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.tradeHistory .body h2 {
+  padding: 0.75rem 1.25rem;
+  background-color: #f9f9f9;
+}
+
+.tradeHistory .body > div {
+  row-gap: 0.25rem;
+}

@@ -16,7 +16,7 @@ import css from "./TradeList.module.css";
 interface TradeListProps {}
 
 const TradeList: FC<TradeListProps> = () => {
-  const { isLoading, total, page, order, items, onChangePage, onChangeOrder, onSaveApart, onRemoveApart } =
+  const { isLoading, total, page, order, items, onChangePage, onChangeOrder, onClickRow, onSaveApart, onRemoveApart } =
     useTradeList();
 
   const isMobile = getIsMobile();
@@ -46,15 +46,16 @@ const TradeList: FC<TradeListProps> = () => {
           </BoxLayout>
         )}
         {isEmpty && <BoxLayout icon={<RiErrorWarningLine />}>데이터 없음</BoxLayout>}
-        {items.map((item) => (
-          <Fragment key={JSON.stringify(item)}>
-            {isMobile ? (
-              <ListRow item={item} onSave={() => onSaveApart(item)} onRemove={() => onRemoveApart(item)} />
-            ) : (
-              <TableRow item={item} onSave={() => onSaveApart(item)} onRemove={() => onRemoveApart(item)} />
-            )}
-          </Fragment>
-        ))}
+        {items.map((item, i) => {
+          const params = {
+            item,
+            onClick: () => onClickRow(item),
+            onSave: () => onSaveApart(item),
+            onRemove: () => onRemoveApart(item),
+          };
+
+          return <Fragment key={i}>{isMobile ? <ListRow {...params} /> : <TableRow {...params} />}</Fragment>;
+        })}
       </div>
       {isShowPagination && (
         <div className={css.pagination}>

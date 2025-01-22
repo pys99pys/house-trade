@@ -40,12 +40,24 @@ const TableRow: FC<TableRowProps> = ({ item, onClick, onSave, onRemove }) => {
       </div>
       <div className={css.cell}>
         {item.isSaved && (
-          <TextButton color="red" onClick={onRemove}>
+          <TextButton
+            color="red"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove();
+            }}
+          >
             삭제
           </TextButton>
         )}
         {!item.isSaved && (
-          <TextButton color="primary" onClick={onSave}>
+          <TextButton
+            color="primary"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSave();
+            }}
+          >
             저장
           </TextButton>
         )}

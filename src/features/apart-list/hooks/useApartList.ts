@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { SavedApartItem, useSavedAparts } from "@/entities/apart";
 import { useRemoveSavedApart } from "@/entities/apart/models/hooks";
-import { createLocationState } from "@/entities/location";
 import { ROUTE } from "@/shared/consts";
 
 import { Item } from "../models/types";
@@ -42,12 +41,7 @@ export const useApartList = (): Return => {
   };
 
   const onClick = (item: SavedApartItem) => {
-    navigate(ROUTE.TRADES, {
-      state: createLocationState({
-        regionCode: item.regionCode,
-        apartName: item.apartName,
-      }),
-    });
+    navigate(`${ROUTE.APART}/${item.regionCode}/${item.apartName}`);
   };
 
   return { apartItems, onClick, onRemove };

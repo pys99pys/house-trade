@@ -1,9 +1,8 @@
 import classNames from "classnames";
 import { FC } from "react";
-import { FaTimes } from "react-icons/fa";
 
 import { getCityNameFromRegionCode, getRegionNameFromRegionCode } from "@/entities/region";
-import { Button, Label } from "@/shared/ui";
+import { Label } from "@/shared/ui";
 
 import { useApartList } from "../hooks/useApartList";
 import css from "./ApartList.module.css";

@@ -1,9 +1,6 @@
-import { useRef } from "react";
-import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { getLocationState, hasLocationState } from "@/entities/location";
-import { useTradesQueryKey } from "@/entities/trade";
+import { useTradesQuery } from "@/entities/trade";
 import { useStateEffect } from "@/shared/hooks";
 
 import { filterAtom } from "../models/stores";
@@ -18,28 +15,12 @@ interface Return {
 export const useFilterState = () => useRecoilValue(filterAtom);
 
 export const useFilterForm = (): Return => {
-  const location = useLocation();
-  const locationState = getLocationState(location.state);
-  const { cityCode } = useTradesQueryKey();
+  const { dataUpdatedAt } = useTradesQuery();
   const setFilter = useSetFilter();
 
-  const prevCityCode = useRef(cityCode);
-
   useStateEffect(() => {
-    const hasApartNameState = hasLocationState(locationState, "apartName");
-
-    if (!hasApartNameState && prevCityCode.current !== cityCode) {
-      setFilter((prev) => ({ ...prev, apartName: "" }));
-    }
-
-    prevCityCode.current = cityCode;
-  }, [cityCode]);
-
-  useStateEffect(() => {
-    if (locationState?.apartName) {
-      setFilter((prev) => ({ ...prev, apartName: locationState.apartName }));
-    }
-  }, [locationState]);
+    setFilter((prev) => ({ ...prev, apartName: "" }));
+  }, [dataUpdatedAt]);
 
   const onChangeApartName = (apartName: string) => {
     setFilter((prev) => ({ ...prev, apartName }));

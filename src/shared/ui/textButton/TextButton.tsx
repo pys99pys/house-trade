@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, PropsWithChildren } from "react";
+import { FC, MouseEvent, PropsWithChildren } from "react";
 
 import { FormColorType } from "@/shared/models/types";
 
@@ -7,7 +7,7 @@ import css from "./TextButton.module.css";
 
 interface TextButtonProps {
   color?: FormColorType;
-  onClick: () => void;
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const TextButton: FC<PropsWithChildren<TextButtonProps>> = ({ color, children, onClick }) => {

@@ -14,36 +14,33 @@ const TradeHistory: FC<TradeHistoryProps> = () => {
 
   return (
     <Box>
-      <Box.Title>실거래가</Box.Title>
-      <Box.Content>
-        <div className={css.tradeHistory}>
-          <div className={classNames(css.header, css.row, "box")}>
-            <span className="font-bold">거래일</span>
-            <span className="font-bold">평수</span>
-            <span className="font-bold">층</span>
-            <span className="font-bold">거래금액</span>
-          </div>
-          <div className={classNames(css.body, "flex direction-column")}>
-            {items.map((item) => (
-              <div key={item.year} className="flex direction-column">
-                <h2 className="box font-bold">
-                  {item.year}년({item.items.length})
-                </h2>
-                {item.items.map((_item, i) => (
-                  <div key={i} className={classNames(css.row, "box")}>
-                    <span>{_item.tradeDate}</span>
-                    <span>
-                      {calculateFlatSize(_item.size)}평<small>({calculateAreaSize(_item.size)}㎡)</small>
-                    </span>
-                    <span>{_item.floor}층</span>
-                    <span className="font-bold">{calculateTradeAmountFormat(_item.tradeAmount)}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+      <div className={css.tradeHistory}>
+        <div className={classNames(css.header, css.row, "box")}>
+          <span className="text-center font-bold">거래일</span>
+          <span className="text-center font-bold">평수</span>
+          <span className="text-center font-bold">층</span>
+          <span className="text-center font-bold">거래금액</span>
         </div>
-      </Box.Content>
+        <div className={classNames(css.body, "flex direction-column")}>
+          {items.map((item) => (
+            <div key={item.year} className="flex direction-column">
+              <h2 className="box text-center font-bold font-small color-primary">
+                {item.year}년({item.items.length})
+              </h2>
+              {item.items.map((_item, i) => (
+                <div key={i} className={classNames(css.row, "box")}>
+                  <span className="text-center">{_item.tradeDate}</span>
+                  <span className="text-center">
+                    {calculateFlatSize(_item.size)}평<small>({calculateAreaSize(_item.size)}㎡)</small>
+                  </span>
+                  <span className="text-center">{_item.floor}층</span>
+                  <span className="text-center font-bold">{calculateTradeAmountFormat(_item.tradeAmount)}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </Box>
   );
 };

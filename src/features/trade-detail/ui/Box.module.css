@@ -3,6 +3,10 @@
   row-gap: 1rem;
 }
 
+.box .title {
+  font-size: 1.05rem;
+}
+
 @media (max-width: 640px) {
   .box {
     padding: 1rem;

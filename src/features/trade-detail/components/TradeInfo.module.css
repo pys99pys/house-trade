@@ -1,3 +1,7 @@
+.tradeInfo h1 {
+  font-size: 1.25rem;
+}
+
 .tradeInfo table {
   width: 100%;
 }

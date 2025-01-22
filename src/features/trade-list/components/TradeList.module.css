@@ -1,8 +1,7 @@
 .tradeList .header {
-  padding: 0 0.75rem;
   display: grid;
   border-top: 1px solid var(--border-color);
-  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.25fr;
+  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.35fr;
 }
 
 .tradeList .body {

@@ -8,7 +8,7 @@
 }
 
 .tradeHistory .row > span {
-  padding: 1.25rem;
+  padding: 1.25rem 0.5rem;
 }
 
 .tradeHistory .header {
@@ -17,13 +17,13 @@
 
 .tradeHistory .body {
   max-height: 80vh;
-  margin-top: 0.5rem;
-  row-gap: 0.5rem;
+  margin-top: 0.25rem;
+  row-gap: 0.25rem;
   overflow-y: auto;
 }
 
 .tradeHistory .body h2 {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem;
   background-color: #f9f9f9;
 }
 
@@ -33,10 +33,6 @@
 
 @media (max-width: 640px) {
   .tradeHistory .row > span {
-    padding: 0.75rem;
-  }
-
-  .tradeHistory .body h2 {
     padding: 0.75rem;
   }
 }

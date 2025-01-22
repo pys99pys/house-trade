@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import { FC } from "react";
 
+import Loading from "@/shared/ui/loading/Loading";
+
 import { useTradeDetail } from "../hooks/useTradeDetail";
 import css from "./TradeDetail.module.css";
 import TradeHistory from "./TradeHistory";
@@ -11,14 +13,20 @@ interface TradeDetailProps {}
 const TradeDetail: FC<TradeDetailProps> = () => {
   const { data } = useTradeDetail();
 
-  if (!data) {
-    return null;
-  }
-
   return (
-    <div className={classNames(css.tradeDetail, "flex direction-column")}>
-      <TradeInfo />
-      <TradeHistory />
+    <div className={css.tradeDetail}>
+      {data && (
+        <div className={classNames(css.content, "flex direction-column")}>
+          <TradeInfo />
+          <TradeHistory />
+        </div>
+      )}
+
+      {!data && (
+        <div className={classNames(css.loading, "flex justify-content-center align-items-center")}>
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };

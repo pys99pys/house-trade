@@ -15,33 +15,29 @@ const TradeInfo: FC<TradeInfoProps> = () => {
 
   return (
     <Box className={css.tradeInfo}>
-      <Box.Title>
-        <h1>{apartName}</h1>
-      </Box.Title>
-      <Box.Content>
-        <table>
-          <tbody>
-            <tr>
-              <th className="text-left font-bold">주소</th>
-              <td>{data.address}</td>
-            </tr>
-            <tr>
-              <th className="text-left font-bold">세대수(동수)</th>
-              <td>{data.housholdsCount}</td>
-            </tr>
-            <tr>
-              <th className="text-left font-bold">주차</th>
-              <td>{data.parking}</td>
-            </tr>
-            <tr>
-              <th className="text-left font-bold">용적률/건폐율</th>
-              <td>
-                {data.floorAreaRatio}%/{data.buildingCoverageRatio}%
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Box.Content>
+      <h1 className="font-bold">{apartName}</h1>
+      <table>
+        <tbody>
+          <tr>
+            <th className="text-left font-bold">주소</th>
+            <td>{data.address}</td>
+          </tr>
+          <tr>
+            <th className="text-left font-bold">세대수(동수)</th>
+            <td>{data.housholdsCount}</td>
+          </tr>
+          <tr>
+            <th className="text-left font-bold">주차</th>
+            <td>{data.parking}</td>
+          </tr>
+          <tr>
+            <th className="text-left font-bold">용적률/건폐율</th>
+            <td>
+              {data.floorAreaRatio}%/{data.buildingCoverageRatio}%
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </Box>
   );
 };

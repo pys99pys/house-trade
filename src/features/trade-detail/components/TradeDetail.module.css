@@ -1,7 +1,7 @@
-.tradeDetail {
-  row-gap: 0.75rem;
+.tradeDetail .loading {
+  height: 50vh;
 }
 
-.tradeDetail h1 {
-  font-size: 1.25rem;
+.tradeDetail .content {
+  row-gap: 1.25rem;
 }

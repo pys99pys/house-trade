@@ -1,7 +1,6 @@
 .tableRow {
-  padding: 0 0.75rem;
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.25fr;
+  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.35fr;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: white;
@@ -20,6 +19,7 @@
 .tableRow .cell {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   column-gap: 0.25rem;
   row-gap: 0.5rem;

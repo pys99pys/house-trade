@@ -7,17 +7,19 @@ import css from "./TradeInfo.module.css";
 interface TradeInfoProps {}
 
 const TradeInfo: FC<TradeInfoProps> = () => {
-  const { data } = useTradeDetail();
+  const { apartName, data } = useTradeDetail();
 
   if (!data) {
     return null;
   }
 
   return (
-    <Box>
-      <Box.Title>아파트 정보</Box.Title>
+    <Box className={css.tradeInfo}>
+      <Box.Title>
+        <h1>{apartName}</h1>
+      </Box.Title>
       <Box.Content>
-        <table className={css.tradeInfo}>
+        <table>
           <tbody>
             <tr>
               <th className="text-left font-bold">주소</th>

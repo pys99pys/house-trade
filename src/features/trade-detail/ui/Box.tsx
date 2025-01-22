@@ -11,8 +11,14 @@ const Content: FC<PropsWithChildren> = ({ children }) => {
   return <div>{children}</div>;
 };
 
-const Box: FC<PropsWithChildren> & { Title: typeof Title; Content: typeof Content } = ({ children }) => {
-  return <div className={classNames(css.box, "box flex direction-column")}>{children}</div>;
+interface BoxProps {
+  className?: string;
+}
+const Box: FC<PropsWithChildren<BoxProps>> & { Title: typeof Title; Content: typeof Content } = ({
+  className,
+  children,
+}) => {
+  return <div className={classNames(css.box, className, "box flex direction-column")}>{children}</div>;
 };
 
 Box.Title = Title;

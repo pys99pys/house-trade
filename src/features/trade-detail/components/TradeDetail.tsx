@@ -19,15 +19,13 @@ const TradeDetail: FC<TradeDetailProps> = () => {
 
   return (
     <div className={classNames(css.tradeDetail, "flex direction-column")}>
-      <Box title="">
-        <h1 className="font-bold">{apartName}</h1>
+      <Box>
+        <Box.Title>
+          <h1>{apartName}</h1>
+        </Box.Title>
       </Box>
-      <Box title="아파트 정보">
-        <TradeInfo />
-      </Box>
-      <Box title="실거래가">
-        <TradeHistory />
-      </Box>
+      <TradeInfo />
+      <TradeHistory />
     </div>
   );
 };

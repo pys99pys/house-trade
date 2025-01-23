@@ -1,0 +1,8 @@
+.tradeChart {
+  overflow-x: auto;
+  direction: rtl;
+}
+
+.tradeChart .chartWrap {
+  min-width: 800px;
+}

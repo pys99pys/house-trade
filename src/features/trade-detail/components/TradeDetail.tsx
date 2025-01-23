@@ -4,6 +4,7 @@ import { FC } from "react";
 import Loading from "@/shared/ui/loading/Loading";
 
 import { useTradeDetail } from "../hooks/useTradeDetail";
+import TradeChart from "./TradeChart";
 import css from "./TradeDetail.module.css";
 import TradeHistory from "./TradeHistory";
 import TradeInfo from "./TradeInfo";
@@ -18,6 +19,7 @@ const TradeDetail: FC<TradeDetailProps> = () => {
       {data && (
         <div className={classNames(css.content, "flex direction-column")}>
           <TradeInfo />
+          <TradeChart />
           <TradeHistory />
         </div>
       )}

@@ -65,7 +65,7 @@ const TradeChart: FC<TradeChartProps> = () => {
   }, [createTradeChart]);
 
   return (
-    <Box className={css.tradeChart}>
+    <Box title="실거래가 추이(단위: 백만원)" className={css.tradeChart}>
       <div ref={scrollContainer} className={css.chartWrap}>
         <canvas id="trade-chart" />
       </div>

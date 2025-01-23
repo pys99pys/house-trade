@@ -13,7 +13,7 @@ const TradeHistory: FC<TradeHistoryProps> = () => {
   const { items } = useTradeHistory();
 
   return (
-    <Box>
+    <Box title="거래 목록">
       <div className={css.tradeHistory}>
         <div className={classNames(css.header, css.row, "box")}>
           <span className="text-center font-bold">거래일</span>

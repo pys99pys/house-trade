@@ -1,3 +1,13 @@
+.default-margin-top {
+  margin-top: var(--default-gap);
+}
+.small-margin-top {
+  margin-top: var(--small-gap);
+}
+.large-margin-top {
+  margin-top: var(--large-gap);
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -56,6 +66,12 @@
 }
 .flex.align-items-end {
   align-items: flex-end;
+}
+.flex.default-gap {
+  gap: var(--default-gap);
+}
+.flex.small-gap {
+  gap: var(--small-gap);
 }
 
 .box {

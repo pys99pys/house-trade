@@ -1,5 +1,4 @@
 .select {
-  width: 100%;
   height: var(--form-height);
   padding: 0.5rem;
   border: 1px solid var(--border-color);
@@ -16,6 +15,7 @@
 
 @media (max-width: 640px) {
   .select {
+    width: 100%;
     height: var(--mobile-form-height);
   }
 }

@@ -5,11 +5,13 @@ import css from "./Select.module.css";
 interface SelectProps {
   value: string;
   onChange: (value: string) => void;
+
+  width?: string;
 }
 
-const Select: FC<PropsWithChildren<SelectProps>> = ({ value, onChange, children }) => {
+const Select: FC<PropsWithChildren<SelectProps>> = ({ value, onChange, width, children }) => {
   return (
-    <select className={css.select} value={value} onChange={(e) => onChange(e.target.value)}>
+    <select style={{ width }} className={css.select} value={value} onChange={(e) => onChange(e.target.value)}>
       {children}
     </select>
   );

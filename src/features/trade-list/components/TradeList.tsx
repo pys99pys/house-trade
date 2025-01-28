@@ -2,7 +2,7 @@ import { FC, Fragment } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { VscLoading } from "react-icons/vsc";
 
-import { getIsMobile } from "@/shared/lib";
+import { useIsMobile } from "@/shared/models";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE } from "../consts/table";
@@ -20,7 +20,7 @@ const TradeList: FC<TradeListProps> = () => {
   const { isLoading, total, page, order, items, onChangePage, onChangeOrder, onClickRow, onSaveApart, onRemoveApart } =
     useTradeList();
 
-  const isMobile = getIsMobile();
+  const isMobile = useIsMobile();
   const perBlock = isMobile ? 5 : 10;
   const isEmpty = !isLoading && items.length === 0;
   const isShowPagination = total > perBlock;

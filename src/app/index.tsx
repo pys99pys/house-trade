@@ -1,25 +1,64 @@
-import { FC, lazy, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RecoilRoot } from "recoil";
+import { FC, lazy, useEffect, useRef, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { ROUTE } from "@/shared/consts";
-import { registNotifyPermission, setisMobile } from "@/shared/lib";
+import { registNotifyPermission } from "@/shared/lib";
+import { useSetisMobile } from "@/shared/models";
 import "@/shared/styles/index.css";
 import Layout from "@/wigets/layout";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import Provider from "./provider";
 
 const TradesPage = lazy(() => import("@/pages/trades-page"));
 const ApartsPage = lazy(() => import("@/pages/aparts-page"));
 const ApartPage = lazy(() => import("@/pages/apart-page"));
 const MigrationPage = lazy(() => import("@/pages/migration-page"));
 
+const withProvider = (Component: FC): FC => {
+  const WrappedComponent: React.FC = () => (
+    <Provider>
+      <Component />
+    </Provider>
+  );
+
+  return WrappedComponent;
+};
+
 const App: FC = () => {
+  const timer = useRef(0);
+
   const [isClient, setIsClient] = useState(false);
+  const setIsMobile = useSetisMobile();
+
+  const setIsMobileState = () => {
+    clearTimeout(timer.current);
+
+    timer.current =
+      window &&
+      window.setTimeout(() => {
+        console.log("ev");
+        setIsMobile(window && window.innerWidth <= 640);
+      }, 100);
+  };
+
+  const setIsMobileStateEvent = () => {
+    window.addEventListener("resize", setIsMobileState);
+  };
+
+  const removeIsMobileStateEvent = () => {
+    window.removeEventListener("resize", setIsMobileState);
+  };
 
   useEffect(() => {
     setIsClient(true);
-    setisMobile();
+    setIsMobileStateEvent();
     registNotifyPermission();
+
+    return () => {
+      removeIsMobileStateEvent();
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isClient) {
@@ -27,22 +66,16 @@ const App: FC = () => {
   }
 
   return (
-    <QueryClientProvider client={new QueryClient()}>
-      <RecoilRoot>
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path={ROUTE.TRADES} element={<TradesPage />} />
-              <Route path={ROUTE.APARTS} element={<ApartsPage />} />
-              <Route path={`${ROUTE.APART}/:regionCode/:apartName`} element={<ApartPage />} />
-              <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
-              <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
-            </Routes>
-          </Layout>
-        </BrowserRouter>
-      </RecoilRoot>
-    </QueryClientProvider>
+    <Layout>
+      <Routes>
+        <Route path={ROUTE.TRADES} element={<TradesPage />} />
+        <Route path={ROUTE.APARTS} element={<ApartsPage />} />
+        <Route path={`${ROUTE.APART}/:regionCode/:apartName`} element={<ApartPage />} />
+        <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
+        <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
+      </Routes>
+    </Layout>
   );
 };
 
-export default App;
+export default withProvider(App);

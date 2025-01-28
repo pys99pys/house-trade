@@ -20,7 +20,7 @@ interface Return {
   order: OrderType;
   items: Item[];
   onChangePage: (page: number) => void;
-  onChangeOrder: (key: OrderType[0]) => void;
+  onChangeOrder: (key: OrderType) => void;
   onClickRow: (tradeItem: TradeItem) => void;
   onSaveApart: (tradeItem: TradeItem) => void;
   onRemoveApart: (tradeItem: TradeItem) => void;
@@ -61,8 +61,8 @@ export const useTradeList = (): Return => {
     setPage(nextPage);
   };
 
-  const onChangeOrder = (key: OrderType[0]) => {
-    setOrder((prev) => [key, key === prev[0] ? (prev[1] === "asc" ? "desc" : "asc") : "asc"]);
+  const onChangeOrder = (nextOrder: OrderType) => {
+    setOrder(nextOrder);
   };
 
   const onClickRow = (tradeItem: TradeItem) => {

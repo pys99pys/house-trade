@@ -5,11 +5,12 @@ import { VscLoading } from "react-icons/vsc";
 import { getIsMobile } from "@/shared/lib";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
-import { PER_PAGE, TABLE_HEADERS } from "../consts/table";
+import { PER_PAGE } from "../consts/table";
 import { useTradeList } from "../hooks/useTradeList";
 import BoxLayout from "../ui/BoxLayout";
-import HeaderCell from "../ui/HeaderCell";
+import ListHeader from "../ui/ListHeader";
 import ListRow from "../ui/ListRow";
+import TableHeader from "../ui/TableHeader";
 import TableRow from "../ui/TableRow";
 import css from "./TradeList.module.css";
 
@@ -26,18 +27,15 @@ const TradeList: FC<TradeListProps> = () => {
 
   return (
     <div className={css.tradeList}>
-      {!isMobile && (
-        <div className={css.header}>
-          {TABLE_HEADERS.map((item) => (
-            <HeaderCell
-              key={item.key}
-              order={order[0] === item.key ? order[1] : null}
-              onClick={() => onChangeOrder(item.key)}
-            >
-              {item.label}
-            </HeaderCell>
-          ))}
-        </div>
+      {isMobile ? (
+        <ListHeader order={order} onChangeOrder={onChangeOrder} />
+      ) : (
+        <TableHeader
+          order={order}
+          onChangeOrder={(column) =>
+            onChangeOrder([column, column === order[0] ? (order[1] === "asc" ? "desc" : "asc") : "asc"])
+          }
+        />
       )}
       <div className={css.body}>
         {isLoading && (

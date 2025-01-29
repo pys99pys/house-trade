@@ -9,7 +9,7 @@ import { Form, SavedRegions, SetQueryKey } from "../models/types";
 import SavedRegion from "./SavedRegion";
 import SearchForm from "./SearchForm";
 
-const TradeSearch: FC = () => {
+const TradeListSearch: FC = () => {
   const setTradesQueryKey = useSetTradesQueryKey();
 
   const [form, setForm] = useState<Form>({
@@ -30,13 +30,15 @@ const TradeSearch: FC = () => {
 
   return (
     <>
-      <SearchForm
-        savedRegions={savedRegions}
-        form={form}
-        setForm={setForm}
-        setSavedRegions={setSavedRegions}
-        setQueryKey={setQueryKey}
-      />
+      <div>
+        <SearchForm
+          savedRegions={savedRegions}
+          form={form}
+          setForm={setForm}
+          setSavedRegions={setSavedRegions}
+          setQueryKey={setQueryKey}
+        />
+      </div>
       <div className="default-mt">
         <SavedRegion
           form={form}
@@ -49,4 +51,4 @@ const TradeSearch: FC = () => {
   );
 };
 
-export default TradeSearch;
+export default TradeListSearch;

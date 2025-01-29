@@ -1,1 +1,1 @@
-export { default as TradeSearch } from "./components/TradeSearch";
+export { default as TradeListSearch } from "./components/TradeListSearch";

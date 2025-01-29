@@ -3,14 +3,10 @@ import { useMemo } from "react";
 import { useSavedAparts } from "@/entities/apart";
 import { TradeItem, useTradesQuery, useTradesQueryKey } from "@/entities/trade";
 
+import { useFilterState } from "../models/hooks";
 import { filterApartName, filterBaseSize, filterSavedApart } from "../services/filters";
-import { useFilterState } from "./useFilterForm";
 
-interface Return {
-  filteredList: TradeItem[];
-}
-
-export const useFilteredList = (): Return => {
+export const useFilteredList = (): TradeItem[] => {
   const { data } = useTradesQuery();
   const tradesQueryKey = useTradesQueryKey();
   const filter = useFilterState();
@@ -31,5 +27,5 @@ export const useFilteredList = (): Return => {
     );
   }, [filter, savedApartsInRegion, data]);
 
-  return { filteredList };
+  return filteredList;
 };

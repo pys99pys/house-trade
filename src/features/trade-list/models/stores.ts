@@ -10,3 +10,8 @@ export const filterAtom = atom<FilterType>({
     onlyBaseSize: false,
   },
 });
+
+export const pageAtom = atom<number>({
+  key: "pageAtom",
+  default: 1,
+});

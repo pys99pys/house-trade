@@ -1,21 +1,23 @@
 import { FC } from "react";
 
+import { useFilteredList } from "../hooks/useFilteredList";
 import FilterForm from "./FilterForm";
 import List from "./List";
-import css from "./TradeList.module.css";
 
 interface TradeListProps {}
 
 const TradeList: FC<TradeListProps> = () => {
+  const items = useFilteredList();
+
   return (
-    <div className={css.tradeList}>
+    <>
       <div>
-        <FilterForm />
+        <FilterForm items={items} />
       </div>
       <div className="default-mt">
-        <List />
+        <List items={items} />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -8,9 +8,9 @@ import { ROUTE } from "@/shared/consts";
 import { notification } from "@/shared/lib";
 
 import { PER_PAGE } from "../consts/table";
-import { Item, OrderType } from "../models/types";
+import { useFilterState } from "../models/hooks";
+import { OrderType } from "../models/types";
 import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
-import { useFilterState } from "./useFilterForm";
 import { useFilteredList } from "./useFilteredList";
 
 interface Return {
@@ -18,7 +18,7 @@ interface Return {
   total: number;
   page: number;
   order: OrderType;
-  items: Item[];
+  items: TradeItem[];
   onChangePage: (page: number) => void;
   onChangeOrder: (key: OrderType) => void;
   onClickRow: (tradeItem: TradeItem) => void;
@@ -30,7 +30,7 @@ export const useTradeList = (): Return => {
   const navigate = useNavigate();
 
   const { isLoading } = useTradesQuery();
-  const { filteredList } = useFilteredList();
+  const filteredList = useFilteredList();
   const filter = useFilterState();
   const tradesQueryKey = useTradesQueryKey();
   const savedAparts = useSavedAparts();
@@ -54,8 +54,6 @@ export const useTradeList = (): Return => {
 
     return mappedItems;
   }, [page, order, filteredList, savedApartsInRegion]);
-
-  useEffect(() => setPage(1), [filter]);
 
   const onChangePage = (nextPage: number) => {
     setPage(nextPage);

@@ -4,12 +4,12 @@ import { FC } from "react";
 import { calculateAreaSize, calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
 import { TextButton } from "@/shared/ui";
 
-import { Item } from "../models/types";
+import { BaseTradeItem } from "../models/types";
 import { calculateApartInfo } from "../services/calculators";
 import css from "./TableRow.module.css";
 
 interface TableRowProps {
-  item: Item;
+  item: BaseTradeItem;
   onClick: () => void;
   onSave: () => void;
   onRemove: () => void;

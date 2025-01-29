@@ -1,10 +1,10 @@
-import { TradeItem } from "@/entities/trade";
+import { TradeItem as BaseTradeItem } from "@/entities/trade";
 
-export type Item = TradeItem & {
+export type TradeItem = BaseTradeItem & {
   isSaved: boolean;
 };
 
-export type OrderType = [orderKey: keyof TradeItem, orderDirection: "asc" | "desc"];
+export type OrderType = [orderKey: keyof BaseTradeItem, orderDirection: "asc" | "desc"];
 
 export interface FilterType {
   apartName: string;

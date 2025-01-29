@@ -36,9 +36,8 @@ const App: FC = () => {
     timer.current =
       window &&
       window.setTimeout(() => {
-        console.log("ev");
         setIsMobile(window && window.innerWidth <= 640);
-      }, 100);
+      }, 300);
   };
 
   const setIsMobileStateEvent = () => {

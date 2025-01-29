@@ -11,11 +11,10 @@ interface TradesPageProps {}
 const TradesPage: FC<TradesPageProps> = () => {
   return (
     <div className={css.tradesPage}>
-      <TradeSearch />
-      <div className={css.filterFormWrap}>
-        <FilterForm />
+      <div>
+        <TradeSearch />
       </div>
-      <div className={css.tradeListWrap}>
+      <div>
         <TradeList />
       </div>
     </div>

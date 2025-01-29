@@ -1,10 +1,10 @@
-.tradeList > div + div {
+.table .body {
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
 }
 
-.tradeList .pagination {
+.table .pagination {
   margin-top: 1.75rem;
   display: flex;
   justify-content: center;

@@ -37,7 +37,7 @@ const TradeSearch: FC = () => {
         setSavedRegions={setSavedRegions}
         setQueryKey={setQueryKey}
       />
-      <div className="default-margin-top">
+      <div className="default-mt">
         <SavedRegion
           form={form}
           savedRegions={savedRegions}

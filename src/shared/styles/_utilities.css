@@ -1,10 +1,10 @@
-.default-margin-top {
+.default-mt {
   margin-top: var(--default-gap);
 }
-.small-margin-top {
+.small-mt {
   margin-top: var(--small-gap);
 }
-.large-margin-top {
+.large-mt {
   margin-top: var(--large-gap);
 }
 

@@ -1,11 +1,3 @@
-.tradesPage .savedRegionWrap {
-  margin-top: 0.5rem;
-}
-
-.tradesPage .filterFormWrap {
-  margin-top: 2rem;
-}
-
-.tradesPage .tradeListWrap {
-  margin-top: 0.75rem;
+.tradesPage > div + div {
+  margin-top: 1rem;
 }

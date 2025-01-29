@@ -1,10 +1,10 @@
-.table .body {
+.list .body {
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
 }
 
-.table .pagination {
+.list .pagination {
   margin-top: 1.75rem;
   display: flex;
   justify-content: center;

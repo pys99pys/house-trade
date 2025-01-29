@@ -14,9 +14,9 @@ import TableHeader from "../ui/TableHeader";
 import TableRow from "../ui/TableRow";
 import css from "./TradeList.module.css";
 
-interface TradeListProps {}
+interface ListProps {}
 
-const TradeList: FC<TradeListProps> = () => {
+const List: FC<ListProps> = () => {
   const { isLoading, total, page, order, items, onChangePage, onChangeOrder, onClickRow, onSaveApart, onRemoveApart } =
     useTradeList();
 
@@ -26,7 +26,7 @@ const TradeList: FC<TradeListProps> = () => {
   const isShowPagination = total > perBlock;
 
   return (
-    <div className={css.table}>
+    <div className={css.list}>
       {isMobile ? (
         <ListHeader order={order} onChangeOrder={onChangeOrder} />
       ) : (
@@ -70,4 +70,4 @@ const TradeList: FC<TradeListProps> = () => {
   );
 };
 
-export default TradeList;
+export default List;

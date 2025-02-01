@@ -5,41 +5,23 @@ import { getCityNames, getRegionsFromCityName } from "@/entities/region";
 import { useIsMobile } from "@/shared/models";
 import { Button, MonthPicker, Select } from "@/shared/ui";
 
-import { distinctRegionCodes, setRegionsToStorage, sortRegionCodes } from "../lib/regionUtils";
-import { Form, SetForm, SetQueryKey, SetSavedRegions } from "../models/types";
+import { Form, OnChangeFormHandler, OnRegistRegionHandler, OnSubmitHandler } from "../models/types";
 
 interface SearchFormProps {
   form: Form;
   savedRegions: string[];
-  setForm: SetForm;
-  setSavedRegions: SetSavedRegions;
-  setQueryKey: SetQueryKey;
+  onChangeForm: OnChangeFormHandler;
+  onRegistRegion: OnRegistRegionHandler;
+  onSubmit: OnSubmitHandler;
 }
 
 const cityNames = getCityNames();
 
-const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, setForm, setSavedRegions, setQueryKey }) => {
+const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, onChangeForm, onRegistRegion, onSubmit }) => {
   const isMobile = useIsMobile();
 
   const regions = getRegionsFromCityName(form.cityName);
   const isRegistered = savedRegions.includes(form.regionCode);
-
-  const onChangeForm = (nextForm: Partial<Form>) => {
-    setForm((prev) => ({ ...prev, ...nextForm }));
-  };
-
-  const onRegist = (regionCode: string) => {
-    setSavedRegions((prev) => {
-      const nextSavedRegions = sortRegionCodes(distinctRegionCodes([...prev, regionCode]));
-      setRegionsToStorage(nextSavedRegions);
-
-      return nextSavedRegions;
-    });
-  };
-
-  const onSubmit = () => {
-    setQueryKey({ regionCode: form.regionCode, year: form.year, month: form.month });
-  };
 
   return (
     <form
@@ -52,12 +34,7 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, setForm, setSaved
       <div className="flex default-gap">
         <Select
           value={form.cityName}
-          onChange={(cityName) =>
-            onChangeForm({
-              cityName,
-              regionCode: getRegionsFromCityName(cityName)[0].code,
-            })
-          }
+          onChange={(cityName) => onChangeForm({ cityName, regionCode: getRegionsFromCityName(cityName)[0].code })}
         >
           {cityNames.map((cityName) => (
             <option key={cityName} value={cityName}>
@@ -81,7 +58,7 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, setForm, setSaved
           검색
         </Button>
         {!isRegistered && (
-          <Button color="yellow" onClick={() => onRegist(form.regionCode)}>
+          <Button color="yellow" onClick={() => onRegistRegion(form.regionCode)}>
             즐겨찾기
           </Button>
         )}

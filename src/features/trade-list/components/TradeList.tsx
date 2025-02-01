@@ -1,13 +1,17 @@
 import { FC } from "react";
 
+import { TradesQueryRequest } from "@/entities/trade";
+
 import { useFilteredList } from "../hooks/useFilteredList";
 import FilterForm from "./FilterForm";
 import List from "./List";
 
-interface TradeListProps {}
+interface TradeListProps {
+  queryKey: TradesQueryRequest;
+}
 
-const TradeList: FC<TradeListProps> = () => {
-  const items = useFilteredList();
+const TradeList: FC<TradeListProps> = ({ queryKey }) => {
+  const items = useFilteredList({ queryKey });
 
   return (
     <>

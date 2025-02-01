@@ -1,24 +1,21 @@
 import axios from "axios";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { PATH } from "../consts/path";
 import { tradesQueryKeyAtom } from "./stores";
-import { TradeQueryRequest, TradeQueryResponse, TradesQueryResponse } from "./types";
+import { TradeQueryRequest, TradeQueryResponse, TradesQueryRequest, TradesQueryResponse } from "./types";
 
 export const useTradesQueryKey = () => useRecoilValue(tradesQueryKeyAtom);
-export const useSetTradesQueryKey = () => useSetRecoilState(tradesQueryKeyAtom);
 
-export const useTradesQuery = (): UseQueryResult<TradesQueryResponse, unknown> => {
-  const { cityCode, yearMonth } = useRecoilValue(tradesQueryKeyAtom);
-
+export const useTradesQuery = (queryKey: TradesQueryRequest): UseQueryResult<TradesQueryResponse, unknown> => {
   return useQuery({
-    queryKey: [PATH.TRADES_API, cityCode, yearMonth],
+    queryKey: [PATH.TRADES_API, queryKey],
     staleTime: 86_400,
     gcTime: 86_400,
-    enabled: !!cityCode && !!yearMonth,
-    queryFn: () => axios.get(`${PATH.TRADES_API}?cityCode=${cityCode}&yearMonth=${yearMonth}`),
+    enabled: !!queryKey.cityCode && !!queryKey.yearMonth,
+    queryFn: () => axios.get(`${PATH.TRADES_API}?cityCode=${queryKey.cityCode}&yearMonth=${queryKey.yearMonth}`),
     select: (res) => res.data,
   });
 };

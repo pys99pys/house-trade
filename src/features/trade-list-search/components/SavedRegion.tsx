@@ -4,40 +4,21 @@ import { FC } from "react";
 import { getCityNameFromRegionCode, getRegionNameFromRegionCode } from "@/entities/region";
 import { Label } from "@/shared/ui";
 
-import { setRegionsToStorage } from "../lib/regionUtils";
-import { Form, SavedRegions, SetQueryKey, SetSavedRegions } from "../models/types";
+import { OnRemoveRegionHandler, OnSubmitHandler, SavedRegions } from "../models/types";
 import css from "./SavedRegion.module.css";
 
 interface SavedRegionProps {
-  form: Form;
   savedRegions: SavedRegions;
-  setSavedRegions: SetSavedRegions;
-  setQueryKey: SetQueryKey;
+  onRemoveRegion: OnRemoveRegionHandler;
+  onSubmit: OnSubmitHandler;
 }
 
-const SavedRegion: FC<SavedRegionProps> = ({ form, savedRegions, setSavedRegions, setQueryKey }) => {
-  const onSelect = (regionCode: string) => {
-    setQueryKey({
-      regionCode,
-      year: form.year,
-      month: form.month,
-    });
-  };
-
-  const onRemove = (regionCode: string) => {
-    setSavedRegions((prev) => {
-      const nextSavedRegions = prev.filter((code) => code !== regionCode);
-      setRegionsToStorage(nextSavedRegions);
-
-      return nextSavedRegions;
-    });
-  };
-
+const SavedRegion: FC<SavedRegionProps> = ({ savedRegions, onRemoveRegion, onSubmit }) => {
   return (
     <ul className={classNames(css.savedRegion, "flex", "small-gap")}>
       {savedRegions.map((regionCode) => (
         <li key={regionCode}>
-          <Label onClick={() => onSelect(regionCode)} onRemove={() => onRemove(regionCode)}>
+          <Label onClick={() => onSubmit({ regionCode })} onRemove={() => onRemoveRegion(regionCode)}>
             {getCityNameFromRegionCode(regionCode)} {getRegionNameFromRegionCode(regionCode)}
           </Label>
         </li>

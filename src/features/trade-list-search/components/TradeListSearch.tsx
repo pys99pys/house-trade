@@ -1,31 +1,29 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
-import { getFirstCityName, getFirstRegionCode } from "@/entities/region";
-import { useSetTradesQueryKey } from "@/entities/trade";
-import { STORAGE_KEY } from "@/shared/consts";
-import { getValue } from "@/shared/lib";
+import { TradesQueryRequest } from "@/entities/trade";
 
-import { Form, SavedRegions, SetQueryKey } from "../models/types";
+import { useSavedRegions } from "../hooks/useSavedRegions";
+import { useSearchForm } from "../hooks/useSearchForm";
+import { OnSubmitHandler } from "../models/types";
 import SavedRegion from "./SavedRegion";
 import SearchForm from "./SearchForm";
 
-const TradeListSearch: FC = () => {
-  const setTradesQueryKey = useSetTradesQueryKey();
+interface TradeListSearchProps {
+  setQueryKey: (queryKey: TradesQueryRequest) => void;
+}
 
-  const [form, setForm] = useState<Form>({
-    cityName: getFirstCityName(),
-    regionCode: getFirstRegionCode(),
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-  });
+const TradeListSearch: FC<TradeListSearchProps> = ({ setQueryKey }) => {
+  const { form, onChangeForm } = useSearchForm();
+  const { savedRegions, onRegistRegion, onRemoveRegion } = useSavedRegions();
 
-  const [savedRegions, setSavedRegions] = useState<SavedRegions>(getValue(STORAGE_KEY.SAVED_REGIONS) ?? []);
+  const onSubmit: OnSubmitHandler = (nextForm) => {
+    const mergedForm = { ...form, ...nextForm };
 
-  const setQueryKey: SetQueryKey = ({ regionCode, year, month }) => {
-    const yearMonth = year + month.toString().padStart(2, "0");
-
-    setForm((prev) => ({ ...prev, regionCode, year, month }));
-    setTradesQueryKey({ cityCode: regionCode, yearMonth });
+    onChangeForm(mergedForm);
+    setQueryKey({
+      cityCode: mergedForm.regionCode,
+      yearMonth: mergedForm.year + mergedForm.month.toString().padStart(2, "0"),
+    });
   };
 
   return (
@@ -34,18 +32,13 @@ const TradeListSearch: FC = () => {
         <SearchForm
           savedRegions={savedRegions}
           form={form}
-          setForm={setForm}
-          setSavedRegions={setSavedRegions}
-          setQueryKey={setQueryKey}
+          onChangeForm={onChangeForm}
+          onRegistRegion={onRegistRegion}
+          onSubmit={onSubmit}
         />
       </div>
       <div className="default-mt">
-        <SavedRegion
-          form={form}
-          savedRegions={savedRegions}
-          setSavedRegions={setSavedRegions}
-          setQueryKey={setQueryKey}
-        />
+        <SavedRegion savedRegions={savedRegions} onRemoveRegion={onRemoveRegion} onSubmit={onSubmit} />
       </div>
     </>
   );

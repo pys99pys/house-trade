@@ -29,9 +29,8 @@ interface Return {
 export const useTradeList = (): Return => {
   const navigate = useNavigate();
 
-  const { isLoading } = useTradesQuery();
-  const filteredList = useFilteredList();
-  const filter = useFilterState();
+  const { isLoading } = useTradesQuery({ cityCode: "", yearMonth: "" });
+  const filteredList = useFilteredList({ queryKey: { cityCode: "", yearMonth: "" } });
   const tradesQueryKey = useTradesQueryKey();
   const savedAparts = useSavedAparts();
 

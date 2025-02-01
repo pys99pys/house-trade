@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { TradeItem, TradesQueryRequest, useGetTradesQuery } from "@/entities/trade";
+import { GetTradesListItem, GetTradesRequest, useGetTradesQuery } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 
 import { useApartItem } from "../hooks/useApartItem";
@@ -10,8 +10,8 @@ import ListItems from "../ui/ListItems";
 import ListTable from "../ui/ListTable";
 
 interface ListProps {
-  tradeItems: TradeItem[];
-  queryKey: TradesQueryRequest;
+  tradeItems: GetTradesListItem[];
+  queryKey: GetTradesRequest;
   filter: FilterType;
 }
 

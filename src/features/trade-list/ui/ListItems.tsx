@@ -6,21 +6,21 @@ import { IconBox, Select, TextButton } from "@/shared/ui";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE, TABLE_HEADERS } from "../consts/table";
-import { OrderType, TradeItemType } from "../models/types";
+import { OrderType, TradeItem } from "../models/types";
 import { calculateApartInfo } from "../services/calculators";
 import css from "./ListItems.module.css";
 
 interface ListItemsProps {
   isLoading: boolean;
   totalCount: number;
-  tradeItems: TradeItemType[];
+  tradeItems: TradeItem[];
   page: number;
   order: OrderType;
   onChangePage: (page: number) => void;
   onChangeOrder: (orderColumn: OrderType[0], orderDirection: OrderType[1]) => void;
-  onSelectApart: (item: TradeItemType) => void;
-  onSaveApart: (item: TradeItemType) => void;
-  onRemoveApart: (item: TradeItemType) => void;
+  onSelectApart: (item: TradeItem) => void;
+  onSaveApart: (item: TradeItem) => void;
+  onRemoveApart: (item: TradeItem) => void;
 }
 
 const PER_BLOCK = 5;

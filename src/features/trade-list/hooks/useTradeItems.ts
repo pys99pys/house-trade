@@ -1,19 +1,19 @@
 import { useMemo, useState } from "react";
 
 import { useSavedAparts } from "@/entities/apart";
-import { TradeItem, TradesQueryRequest } from "@/entities/trade";
+import { GetTradesListItem, GetTradesRequest } from "@/entities/trade";
 
 import { PER_PAGE } from "../consts/table";
-import { OrderType, TradeItemType } from "../models/types";
+import { OrderType, TradeItem } from "../models/types";
 import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
 
 interface Params {
-  queryKey: TradesQueryRequest;
-  tradeItems: TradeItem[];
+  queryKey: GetTradesRequest;
+  tradeItems: GetTradesListItem[];
 }
 
 interface Return {
-  tradeItems: TradeItemType[];
+  tradeItems: TradeItem[];
   page: number;
   order: OrderType;
   onChangePage: (nextPage: number) => void;

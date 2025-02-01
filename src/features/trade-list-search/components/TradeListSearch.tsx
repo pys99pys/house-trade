@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { TradesQueryRequest } from "@/entities/trade";
+import { GetTradesRequest } from "@/entities/trade";
 
 import { useSavedRegions } from "../hooks/useSavedRegions";
 import { useSearchForm } from "../hooks/useSearchForm";
@@ -9,7 +9,7 @@ import SavedRegion from "./SavedRegion";
 import SearchForm from "./SearchForm";
 
 interface TradeListSearchProps {
-  setQueryKey: (queryKey: TradesQueryRequest) => void;
+  setQueryKey: (queryKey: GetTradesRequest) => void;
 }
 
 const TradeListSearch: FC<TradeListSearchProps> = ({ setQueryKey }) => {

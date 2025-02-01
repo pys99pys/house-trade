@@ -1,6 +1,6 @@
-import { TradeItem } from "@/entities/trade";
+import { GetTradesListItem } from "@/entities/trade";
 
-export const TABLE_HEADERS: { key: keyof TradeItem; label: string }[] = [
+export const TABLE_HEADERS: { key: keyof GetTradesListItem; label: string }[] = [
   { key: "tradeDate", label: "거래일" },
   { key: "address", label: "주소지" },
   { key: "apartName", label: "아파트명" },

@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 
 import { useSavedAparts } from "@/entities/apart";
-import { TradeItem, TradesQueryRequest, useGetTradesQuery } from "@/entities/trade";
+import { GetTradesListItem, GetTradesRequest, useGetTradesQuery } from "@/entities/trade";
 
 import { FilterType } from "../models/types";
 import { filterApartName, filterBaseSize, filterSavedApart } from "../services/filters";
 
 interface Params {
-  queryKey: TradesQueryRequest;
+  queryKey: GetTradesRequest;
   filter: FilterType;
 }
 
 interface Return {
-  tradeItems: TradeItem[];
+  tradeItems: GetTradesListItem[];
 }
 
 export const useTradeItemsWithFilter = ({ queryKey, filter }: Params): Return => {

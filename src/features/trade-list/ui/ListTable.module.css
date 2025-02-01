@@ -1,0 +1,71 @@
+.listTable .header {
+  display: grid;
+  border-top: 1px solid var(--border-color);
+  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.35fr;
+}
+
+.listTable .header .cell .button {
+  width: 100%;
+  padding: 1.5rem 0.75rem;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.listTable .header .cell .button span {
+  transition: transform 500ms ease;
+}
+
+.listTable .header .cell .button span.asc {
+  transform: rotate(-180deg) translateY(-2px);
+}
+
+.listTable .header .cell .button span.desc {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.listTable .body .row {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.35fr;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  transition: border-color 300ms ease;
+}
+
+.listTable .body .row:hover {
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+}
+
+.listTable .body .row.active {
+  border-color: var(--primary-color);
+}
+
+.listTable .body .row .cell {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.25rem;
+  row-gap: 0.5rem;
+  padding: 1.5rem 0.75rem;
+  box-sizing: border-box;
+}
+
+.listTable .body .row .cell .highlight {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.listTable .body .row .cell small {
+  font-size: 0.85rem;
+}
+
+.listTable .pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}

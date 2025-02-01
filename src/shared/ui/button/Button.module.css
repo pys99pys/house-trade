@@ -62,10 +62,6 @@
 }
 
 @media (max-width: 640px) {
-  .button {
-    width: 100%;
-  }
-
   .button.defaultSize {
     height: var(--mobile-form-height);
   }

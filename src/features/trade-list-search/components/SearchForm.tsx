@@ -6,6 +6,7 @@ import { useIsMobile } from "@/shared/models";
 import { Button, MonthPicker, Select } from "@/shared/ui";
 
 import { Form, OnChangeFormHandler, OnRegistRegionHandler, OnSubmitHandler } from "../models/types";
+import css from "./SearchForm.module.css";
 
 interface SearchFormProps {
   form: Form;
@@ -25,7 +26,7 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, onChangeForm, onR
 
   return (
     <form
-      className={classNames("flex default-gap", { "direction-column": isMobile })}
+      className={classNames(css.searchForm, "flex default-gap", { "direction-column": isMobile })}
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit();
@@ -53,7 +54,7 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, onChangeForm, onR
       <div className="flex default-gap">
         <MonthPicker year={form.year} month={form.month} onChange={(year, month) => onChangeForm({ year, month })} />
       </div>
-      <div className="flex default-gap">
+      <div className={classNames(css.buttonWrap, "flex default-gap")}>
         <Button type="submit" color="primary">
           검색
         </Button>

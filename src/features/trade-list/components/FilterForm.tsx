@@ -18,7 +18,7 @@ interface FilterFormProps {
 const FilterForm: FC<FilterFormProps> = ({ tradeItems, filter, onChangeFilter }) => {
   const totalCount = useMemo(() => {
     return tradeItems.length;
-  }, []);
+  }, [tradeItems]);
 
   const averageAmount = useMemo(() => {
     const averageAmount = tradeItems.reduce((acc, item) => {

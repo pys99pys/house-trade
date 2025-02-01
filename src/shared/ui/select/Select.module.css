@@ -13,6 +13,16 @@
   cursor: pointer;
 }
 
+.select.default {
+  height: var(--form-height);
+  padding: 0 0.75rem;
+}
+
+.select.small {
+  height: var(--form-small-height);
+  padding: 0 0.25rem;
+}
+
 @media (max-width: 640px) {
   .select {
     width: 100%;

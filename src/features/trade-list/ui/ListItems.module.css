@@ -1,0 +1,29 @@
+.listItems .header {
+  display: flex;
+  column-gap: var(--default-gap);
+}
+
+.listItems .body {
+  margin-top: var(--default-gap);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--small-gap);
+}
+
+.listItems .body .row {
+  padding: 1rem;
+}
+
+.listItems .body .row .apartInfoWrap {
+  row-gap: 0.5rem;
+}
+
+.listItems .body .row .priceInfoWrap {
+  row-gap: 0.25rem;
+}
+
+.listItems .pagination {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}

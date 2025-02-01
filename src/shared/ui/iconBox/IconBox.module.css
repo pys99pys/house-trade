@@ -1,0 +1,22 @@
+.iconBox {
+  padding: 3.5rem 0;
+  display: flex;
+  row-gap: 1rem;
+}
+
+.iconBox i {
+  font-size: 2rem;
+}
+
+.iconBox i.rotate {
+  animation: rotateIcon 1s infinite linear;
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

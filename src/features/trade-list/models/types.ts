@@ -9,5 +9,6 @@ export interface FilterType {
   onlySavedApart: boolean;
   onlyBaseSize: boolean;
 }
+export type OnChangeFilterHandler = (nextFilter: Partial<FilterType>) => void;
 
 export type OrderType = [orderKey: keyof BaseTradeItem, orderDirection: "asc" | "desc"];

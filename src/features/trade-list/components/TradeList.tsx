@@ -2,7 +2,8 @@ import { FC } from "react";
 
 import { TradesQueryRequest } from "@/entities/trade";
 
-import { useFilteredList } from "../hooks/useFilteredList";
+import { useFilter } from "../hooks/useFilter";
+import { useTradeItems } from "../hooks/useTradeItems";
 import FilterForm from "./FilterForm";
 import List from "./List";
 
@@ -11,15 +12,16 @@ interface TradeListProps {
 }
 
 const TradeList: FC<TradeListProps> = ({ queryKey }) => {
-  const items = useFilteredList({ queryKey });
+  const { filter, onChangeFilter } = useFilter();
+  const { tradeItems } = useTradeItems({ queryKey, filter });
 
   return (
     <>
       <div>
-        <FilterForm items={items} />
+        <FilterForm tradeItems={tradeItems} filter={filter} onChangeFilter={onChangeFilter} />
       </div>
       <div className="default-mt">
-        <List items={items} />
+        <List tradeItems={tradeItems} queryKey={queryKey} />
       </div>
     </>
   );

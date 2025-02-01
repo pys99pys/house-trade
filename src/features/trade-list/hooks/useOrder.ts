@@ -7,7 +7,7 @@ interface Return {
   onChangeOrder: (column: OrderType[0], direction?: OrderType[1]) => void;
 }
 
-export const useListOrder = (): Return => {
+export const useOrder = (): Return => {
   const [order, setOrder] = useState<OrderType>(["tradeDate", "desc"]);
 
   const onChangeOrder = (column: OrderType[0], direction?: OrderType[1]) => {

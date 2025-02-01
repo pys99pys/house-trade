@@ -3,14 +3,13 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { VscLoading } from "react-icons/vsc";
 
 import { useSavedAparts } from "@/entities/apart";
-import { TradeItem, useTradesQueryKey } from "@/entities/trade";
+import { TradeItem, TradesQueryRequest, useTradesQuery, useTradesQueryKey } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE } from "../consts/table";
 import { useApartItem } from "../hooks/useApartItem";
-import { useListOrder } from "../hooks/useListOrder";
-import { useTradeList } from "../hooks/useTradeList";
+import { useOrder } from "../hooks/useOrder";
 import { usePageState, useSetPageState } from "../models/hooks";
 import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
 import BoxLayout from "../ui/BoxLayout";
@@ -21,13 +20,13 @@ import TableRow from "../ui/TableRow";
 import css from "./List.module.css";
 
 interface ListProps {
-  items: TradeItem[];
+  tradeItems: TradeItem[];
+  queryKey: TradesQueryRequest;
 }
 
-const List: FC<ListProps> = ({ items }) => {
-  const { isLoading, total } = useTradeList();
-
-  const { order, onChangeOrder } = useListOrder();
+const List: FC<ListProps> = ({ tradeItems, queryKey }) => {
+  const { isLoading } = useTradesQuery(queryKey);
+  const { order, onChangeOrder } = useOrder();
   const { onSelectApart, onSaveApart, onRemoveApart } = useApartItem();
 
   const tradesQueryKey = useTradesQueryKey();
@@ -39,18 +38,19 @@ const List: FC<ListProps> = ({ items }) => {
     return savedAparts.filter((item) => item.regionCode === tradesQueryKey.cityCode);
   }, [tradesQueryKey.cityCode, savedAparts]);
 
-  const mappedItems = useMemo(() => {
-    const sortedItems = sortItems(items, order);
+  const items = useMemo(() => {
+    const sortedItems = sortItems(tradeItems, order);
     const slicedItems = sliceItems(sortedItems, { page, perPage: PER_PAGE });
     const mappedItems = slicedItems.map((item) => ({ ...item, isSaved: compareSavedApart(savedApartsInRegion, item) }));
 
     return mappedItems;
-  }, [page, order, items, savedApartsInRegion]);
+  }, [page, order, tradeItems, savedApartsInRegion]);
 
+  const totalCount = tradeItems.length;
   const isMobile = useIsMobile();
   const perBlock = isMobile ? 5 : 10;
-  const isEmpty = !isLoading && items.length === 0;
-  const isShowPagination = total > perBlock;
+  const isEmpty = !isLoading && tradeItems.length === 0;
+  const isShowPagination = totalCount > perBlock;
 
   return (
     <div className={css.list}>
@@ -66,7 +66,7 @@ const List: FC<ListProps> = ({ items }) => {
           </BoxLayout>
         )}
         {isEmpty && <BoxLayout icon={<RiErrorWarningLine />}>데이터 없음</BoxLayout>}
-        {mappedItems.map((item, i) => {
+        {items.map((item, i) => {
           const params = {
             item,
             onClick: () => onSelectApart(item),
@@ -79,7 +79,13 @@ const List: FC<ListProps> = ({ items }) => {
       </div>
       {isShowPagination && (
         <div className={css.pagination}>
-          <Pagination perPage={PER_PAGE} perBlock={perBlock} totalCount={total} currentPage={page} onChange={setPage} />
+          <Pagination
+            perPage={PER_PAGE}
+            perBlock={perBlock}
+            totalCount={totalCount}
+            currentPage={page}
+            onChange={setPage}
+          />
         </div>
       )}
     </div>

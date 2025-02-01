@@ -2,7 +2,7 @@ import { SavedApartItem } from "@/entities/apart";
 import { TradeItem } from "@/entities/trade";
 import { CONFIG } from "@/shared/consts";
 
-import { FilterType } from "../models/types";
+import { FilterType, OrderType } from "../models/types";
 
 export const compareSavedApart = (savedAparts: Omit<SavedApartItem, "regionCode">[], item: TradeItem): boolean => {
   return savedAparts.some(
@@ -37,7 +37,7 @@ export const filterSavedApart = (item: TradeItem, filter: FilterType, savedApart
   return compareSavedApart(savedAparts, item);
 };
 
-export const sortItems = (items: TradeItem[], order: [keyof TradeItem, "asc" | "desc"]): TradeItem[] => {
+export const sortItems = (items: TradeItem[], order: OrderType): TradeItem[] => {
   return items.sort((a, b) => {
     if ((a[order[0]] ?? "") > (b[order[0]] ?? "")) {
       return order[1] === "asc" ? 1 : -1;

@@ -1,6 +1,6 @@
-import { TradeItem as BaseTradeItem } from "@/entities/trade";
+import { TradeItem } from "@/entities/trade";
 
-export type TradeItem = BaseTradeItem & {
+export type TradeItemType = TradeItem & {
   isSaved: boolean;
 };
 
@@ -11,4 +11,4 @@ export interface FilterType {
 }
 export type OnChangeFilterHandler = (nextFilter: Partial<FilterType>) => void;
 
-export type OrderType = [orderKey: keyof BaseTradeItem, orderDirection: "asc" | "desc"];
+export type OrderType = [orderKey: keyof TradeItem, orderDirection: "asc" | "desc"];

@@ -1,17 +1,15 @@
-import { FC, Fragment, useMemo } from "react";
+import { FC, Fragment, useEffect } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { VscLoading } from "react-icons/vsc";
 
-import { useSavedAparts } from "@/entities/apart";
-import { TradeItem, TradesQueryRequest, useTradesQuery, useTradesQueryKey } from "@/entities/trade";
+import { TradeItem, TradesQueryRequest, useTradesQuery } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE } from "../consts/table";
 import { useApartItem } from "../hooks/useApartItem";
-import { useOrder } from "../hooks/useOrder";
-import { usePageState, useSetPageState } from "../models/hooks";
-import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
+import { useTradeItems } from "../hooks/useTradeItems";
+import { FilterType } from "../models/types";
 import BoxLayout from "../ui/BoxLayout";
 import ListHeader from "../ui/ListHeader";
 import ListRow from "../ui/ListRow";
@@ -22,35 +20,29 @@ import css from "./List.module.css";
 interface ListProps {
   tradeItems: TradeItem[];
   queryKey: TradesQueryRequest;
+  filter: FilterType;
 }
 
-const List: FC<ListProps> = ({ tradeItems, queryKey }) => {
+const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter }) => {
   const { isLoading } = useTradesQuery(queryKey);
-  const { order, onChangeOrder } = useOrder();
+
+  const { tradeItems, page, order, onChangePage, onChangeOrder } = useTradeItems({
+    queryKey,
+    tradeItems: originTradeItems,
+  });
+
   const { onSelectApart, onSaveApart, onRemoveApart } = useApartItem();
-
-  const tradesQueryKey = useTradesQueryKey();
-  const savedAparts = useSavedAparts();
-  const page = usePageState();
-  const setPage = useSetPageState();
-
-  const savedApartsInRegion = useMemo(() => {
-    return savedAparts.filter((item) => item.regionCode === tradesQueryKey.cityCode);
-  }, [tradesQueryKey.cityCode, savedAparts]);
-
-  const items = useMemo(() => {
-    const sortedItems = sortItems(tradeItems, order);
-    const slicedItems = sliceItems(sortedItems, { page, perPage: PER_PAGE });
-    const mappedItems = slicedItems.map((item) => ({ ...item, isSaved: compareSavedApart(savedApartsInRegion, item) }));
-
-    return mappedItems;
-  }, [page, order, tradeItems, savedApartsInRegion]);
 
   const totalCount = tradeItems.length;
   const isMobile = useIsMobile();
   const perBlock = isMobile ? 5 : 10;
   const isEmpty = !isLoading && tradeItems.length === 0;
   const isShowPagination = totalCount > perBlock;
+
+  useEffect(() => {
+    onChangePage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryKey, filter]);
 
   return (
     <div className={css.list}>
@@ -66,7 +58,7 @@ const List: FC<ListProps> = ({ tradeItems, queryKey }) => {
           </BoxLayout>
         )}
         {isEmpty && <BoxLayout icon={<RiErrorWarningLine />}>데이터 없음</BoxLayout>}
-        {items.map((item, i) => {
+        {tradeItems.map((item, i) => {
           const params = {
             item,
             onClick: () => onSelectApart(item),
@@ -84,7 +76,7 @@ const List: FC<ListProps> = ({ tradeItems, queryKey }) => {
             perBlock={perBlock}
             totalCount={totalCount}
             currentPage={page}
-            onChange={setPage}
+            onChange={onChangePage}
           />
         </div>
       )}

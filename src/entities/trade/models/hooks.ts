@@ -1,13 +1,9 @@
 import axios from "axios";
-import { useRecoilValue } from "recoil";
 
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { PATH } from "../consts/path";
-import { tradesQueryKeyAtom } from "./stores";
 import { TradeQueryRequest, TradeQueryResponse, TradesQueryRequest, TradesQueryResponse } from "./types";
-
-export const useTradesQueryKey = () => useRecoilValue(tradesQueryKeyAtom);
 
 export const useTradesQuery = (queryKey: TradesQueryRequest): UseQueryResult<TradesQueryResponse, unknown> => {
   return useQuery({

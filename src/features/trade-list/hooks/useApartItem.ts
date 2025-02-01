@@ -2,9 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 import { useRegistSavedApart } from "@/entities/apart";
 import { useRemoveSavedApart } from "@/entities/apart/models/hooks";
-import { TradeItem, useTradesQueryKey } from "@/entities/trade";
+import { TradeItem, TradesQueryRequest } from "@/entities/trade";
 import { ROUTE } from "@/shared/consts";
 import { notification } from "@/shared/lib";
+
+interface Params {
+  queryKey: TradesQueryRequest;
+}
 
 interface Return {
   onSelectApart: (item: TradeItem) => void;
@@ -12,20 +16,19 @@ interface Return {
   onRemoveApart: (item: TradeItem) => void;
 }
 
-export const useApartItem = (): Return => {
+export const useApartItem = ({ queryKey }: Params): Return => {
   const navigate = useNavigate();
-  const tradesQueryKey = useTradesQueryKey();
 
   const registSavedApart = useRegistSavedApart();
   const removeSavedApart = useRemoveSavedApart();
 
   const onSelectApart = (item: TradeItem) => {
-    navigate(`${ROUTE.APART}/${tradesQueryKey.cityCode}/${item.apartName}`);
+    navigate(`${ROUTE.APART}/${queryKey.cityCode}/${item.apartName}`);
   };
 
   const onSaveApart = (item: TradeItem) => {
     registSavedApart({
-      regionCode: tradesQueryKey.cityCode,
+      regionCode: queryKey.cityCode,
       address: item.address,
       apartName: item.apartName,
     });
@@ -35,7 +38,7 @@ export const useApartItem = (): Return => {
 
   const onRemoveApart = (item: TradeItem) => {
     removeSavedApart({
-      regionCode: tradesQueryKey.cityCode,
+      regionCode: queryKey.cityCode,
       address: item.address,
       apartName: item.apartName,
     });

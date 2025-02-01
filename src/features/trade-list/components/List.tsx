@@ -31,7 +31,7 @@ const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter })
     tradeItems: originTradeItems,
   });
 
-  const { onSelectApart, onSaveApart, onRemoveApart } = useApartItem();
+  const { onSelectApart, onSaveApart, onRemoveApart } = useApartItem({ queryKey });
 
   const totalCount = tradeItems.length;
   const isMobile = useIsMobile();

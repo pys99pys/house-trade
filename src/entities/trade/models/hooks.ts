@@ -3,15 +3,15 @@ import axios from "axios";
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { PATH } from "../consts/path";
-import { TradeQueryRequest, TradeQueryResponse, TradesQueryRequest, TradesQueryResponse } from "./types";
+import { GetTradesRequest, GetTradesResponse, TradeQueryRequest, TradeQueryResponse } from "./types";
 
-export const useTradesQuery = (queryKey: TradesQueryRequest): UseQueryResult<TradesQueryResponse, unknown> => {
+export const useGetTradesQuery = (params: GetTradesRequest): UseQueryResult<GetTradesResponse, unknown> => {
   return useQuery({
-    queryKey: [PATH.TRADES_API, queryKey],
+    queryKey: [PATH.TRADES_API, params],
     staleTime: 86_400,
     gcTime: 86_400,
-    enabled: !!queryKey.cityCode && !!queryKey.yearMonth,
-    queryFn: () => axios.get(`${PATH.TRADES_API}?cityCode=${queryKey.cityCode}&yearMonth=${queryKey.yearMonth}`),
+    enabled: !!params.cityCode && !!params.yearMonth,
+    queryFn: () => axios.get(`${PATH.TRADES_API}?cityCode=${params.cityCode}&yearMonth=${params.yearMonth}`),
     select: (res) => res.data,
   });
 };

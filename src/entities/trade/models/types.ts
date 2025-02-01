@@ -1,4 +1,4 @@
-export interface TradeItem {
+export interface GetTradesListItem {
   isNewRecord: boolean;
   apartName: string;
   address: string;
@@ -11,14 +11,14 @@ export interface TradeItem {
   maxTradeAmount: number;
 }
 
-export interface TradesQueryRequest {
+export interface GetTradesRequest {
   cityCode: string;
   yearMonth: string;
 }
 
-export interface TradesQueryResponse {
+export interface GetTradesResponse {
   count: number;
-  list: TradeItem[];
+  list: GetTradesListItem[];
 }
 
 export interface TradeQueryRequest {

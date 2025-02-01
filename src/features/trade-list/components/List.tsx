@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 
-import { TradeItem, TradesQueryRequest, useTradesQuery } from "@/entities/trade";
+import { TradeItem, TradesQueryRequest, useGetTradesQuery } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 
 import { useApartItem } from "../hooks/useApartItem";
@@ -16,7 +16,7 @@ interface ListProps {
 }
 
 const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter }) => {
-  const { isLoading } = useTradesQuery(queryKey);
+  const { isLoading } = useGetTradesQuery(queryKey);
 
   const { tradeItems, page, order, onChangePage, onChangeOrder } = useTradeItems({
     queryKey,

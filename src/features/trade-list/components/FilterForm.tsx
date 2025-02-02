@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 
-import { GetTradesListItem, calculateFlatSize } from "@/entities/trade";
+import { GetTradesResponseListItem, calculateFlatSize } from "@/entities/trade";
 import { parseToNumberFormat } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 import Input from "@/shared/ui/input/Input";
@@ -10,7 +10,7 @@ import { calaulateAverageAmountFormat } from "../services/calculators";
 import css from "./FilterForm.module.css";
 
 interface FilterFormProps {
-  tradeItems: GetTradesListItem[];
+  tradeItems: GetTradesResponseListItem[];
   filter: FilterType;
   onChangeFilter: OnChangeFilterHandler;
 }

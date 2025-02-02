@@ -1,7 +1,7 @@
-import { GetTradesListItem } from "@/entities/trade";
+import { GetTradesResponseListItem } from "@/entities/trade";
 import { parseToNumberFormat } from "@/shared/lib";
 
-export const calculateApartInfo = (item: GetTradesListItem): string => {
+export const calculateApartInfo = (item: GetTradesResponseListItem): string => {
   const subTexts: string[] = [];
 
   if (item.floor !== null) subTexts.push(`${item.floor}층`);

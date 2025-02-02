@@ -1,21 +1,19 @@
 import { useMemo } from "react";
 
-import { useTradeDetail } from "./useTradeDetail";
+import { GetApartResponseTradeItem } from "@/entities/apart";
+
+interface Params {
+  tradeItems: GetApartResponseTradeItem[];
+}
 
 interface Return {
   months: string[];
   tradeAmounts: number[];
 }
 
-export const useTradeChart = (): Return => {
-  const { data } = useTradeDetail();
-
+export const useTradeChart = ({ tradeItems }: Params): Return => {
   const monthlyTotalTradeAmount = useMemo(() => {
-    if (!data) {
-      return [];
-    }
-
-    return data.tradeItems
+    return tradeItems
       .reverse()
       .reduce((acc: { month: string; totalAmounts: number[] }[], item: { tradeDate: string; tradeAmount: number }) => {
         const yearMonth = item.tradeDate.substring(0, 7);
@@ -29,7 +27,7 @@ export const useTradeChart = (): Return => {
 
         return acc;
       }, []);
-  }, [data]);
+  }, [tradeItems]);
 
   const monthlyAverageTradeAmount = useMemo(() => {
     return monthlyTotalTradeAmount.map((item) => ({

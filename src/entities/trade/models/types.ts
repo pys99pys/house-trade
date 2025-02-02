@@ -1,4 +1,4 @@
-export interface GetTradesListItem {
+export interface GetTradesResponseListItem {
   isNewRecord: boolean;
   apartName: string;
   address: string;
@@ -18,24 +18,5 @@ export interface GetTradesRequest {
 
 export interface GetTradesResponse {
   count: number;
-  list: GetTradesListItem[];
-}
-
-export interface TradeQueryRequest {
-  regionCode: string;
-  apartName: string;
-}
-
-export interface TradeQueryResponse {
-  address: string;
-  housholdsCount: string;
-  parking: string;
-  floorAreaRatio: number;
-  buildingCoverageRatio: number;
-  tradeItems: {
-    tradeDate: string;
-    size: number;
-    floor: number;
-    tradeAmount: number;
-  }[];
+  list: GetTradesResponseListItem[];
 }

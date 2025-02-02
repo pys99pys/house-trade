@@ -1,16 +1,19 @@
 import classNames from "classnames";
 import { FC } from "react";
 
+import { GetApartResponseTradeItem } from "@/entities/apart";
 import { calculateAreaSize, calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
 
 import { useTradeHistory } from "../hooks/useTradeHistory";
 import Box from "../ui/Box";
 import css from "./TradeHistory.module.css";
 
-interface TradeHistoryProps {}
+interface TradeHistoryProps {
+  tradeItems: GetApartResponseTradeItem[];
+}
 
-const TradeHistory: FC<TradeHistoryProps> = () => {
-  const { items } = useTradeHistory();
+const TradeHistory: FC<TradeHistoryProps> = ({ tradeItems: originTradeItems }) => {
+  const { tradeItems } = useTradeHistory({ originTradeItems });
 
   return (
     <Box title="거래 목록">
@@ -22,7 +25,7 @@ const TradeHistory: FC<TradeHistoryProps> = () => {
           <span className="text-center font-bold">거래금액</span>
         </div>
         <div className={classNames(css.body, "flex direction-column")}>
-          {items.map((item) => (
+          {tradeItems.map((item) => (
             <div key={item.year} className="flex direction-column">
               <h2 className="box text-center font-bold font-small color-primary">
                 {item.year}년({item.items.length})

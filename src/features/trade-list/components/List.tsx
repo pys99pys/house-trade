@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { GetTradesListItem, GetTradesRequest, useGetTradesQuery } from "@/entities/trade";
+import { GetTradesRequest, GetTradesResponseListItem, useGetTradesQuery } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 
 import { useTradeItem } from "../hooks/useTradeItem";
@@ -11,7 +11,7 @@ import ListItems from "../ui/ListItems";
 import ListTable from "../ui/ListTable";
 
 interface ListProps {
-  tradeItems: GetTradesListItem[];
+  tradeItems: GetTradesResponseListItem[];
   queryKey: GetTradesRequest;
   filter: FilterType;
 }

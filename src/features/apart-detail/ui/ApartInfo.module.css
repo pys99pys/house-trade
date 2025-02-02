@@ -1,19 +1,19 @@
-.tradeInfo h1 {
+.apartInfo h1 {
   font-size: 1.25rem;
 }
 
-.tradeInfo table {
+.apartInfo table {
   width: 100%;
 }
 
-.tradeInfo table th {
+.apartInfo table th {
   width: 20%;
   min-width: 8.5rem;
   background-color: #f9f9f9;
 }
 
-.tradeInfo table th,
-.tradeInfo table td {
+.apartInfo table th,
+.apartInfo table td {
   padding: 1rem;
   border: 1px solid var(--border-color);
 }

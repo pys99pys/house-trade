@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useSavedAparts } from "@/entities/apart";
-import { GetTradesListItem, GetTradesRequest } from "@/entities/trade";
+import { GetTradesRequest, GetTradesResponseListItem } from "@/entities/trade";
 import { STORAGE_KEY } from "@/shared/consts";
 import { getValue, setValue } from "@/shared/lib";
 
@@ -12,7 +12,7 @@ import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
 
 interface Params {
   queryKey: GetTradesRequest;
-  originTradeItems: GetTradesListItem[];
+  originTradeItems: GetTradesResponseListItem[];
 }
 
 interface Return {

@@ -120,11 +120,11 @@ const createResponse = async ({ area, danji_nm }: { area: string; danji_nm: stri
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Response | { message: string }>) => {
-  if (typeof req.query.cityCode !== "string" || typeof req.query.apartName !== "string") {
+  if (typeof req.query.regionCode !== "string" || typeof req.query.apartName !== "string") {
     return res.status(500).json({ message: "필수 파라미터가 누락되었습니다." });
   }
 
-  res.status(200).json(await createResponse({ area: req.query.cityCode, danji_nm: req.query.apartName }));
+  res.status(200).json(await createResponse({ area: req.query.regionCode, danji_nm: req.query.apartName }));
 };
 
 export default handler;

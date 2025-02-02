@@ -10,7 +10,7 @@ interface Return {
 export const useTradeDetail = (): Return => {
   const { regionCode, apartName } = useParams<{ regionCode: string; apartName: string }>();
 
-  const { data } = useTradeQuery({ apartName: apartName ?? "", cityCode: regionCode ?? "" });
+  const { data } = useTradeQuery({ apartName: apartName ?? "", regionCode: regionCode ?? "" });
 
   return { apartName: apartName ?? "", data: data ?? null };
 };

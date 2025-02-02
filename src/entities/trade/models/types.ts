@@ -22,7 +22,7 @@ export interface GetTradesResponse {
 }
 
 export interface TradeQueryRequest {
-  cityCode: string;
+  regionCode: string;
   apartName: string;
 }
 

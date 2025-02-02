@@ -5,7 +5,6 @@ import { ROUTE } from "@/shared/consts";
 import "@/shared/styles/index.css";
 import Layout from "@/wigets/layout";
 
-import { useLocationState } from "./hooks/useLocationState";
 import { useRegistNotifyPermmistion } from "./hooks/useRegistNotifyPermmistion";
 import { useSetClientState } from "./hooks/useSetClientState";
 import { useSetMobileState } from "./hooks/useSetMobileState";
@@ -16,20 +15,9 @@ const ApartsPage = lazy(() => import("@/pages/aparts-page"));
 const ApartPage = lazy(() => import("@/pages/apart-page"));
 const MigrationPage = lazy(() => import("@/pages/migration-page"));
 
-const withProvider = (Component: FC): FC => {
-  const WrappedComponent: React.FC = () => (
-    <RootProvider>
-      <Component />
-    </RootProvider>
-  );
-
-  return WrappedComponent;
-};
-
 const App: FC = () => {
   useRegistNotifyPermmistion();
   useSetMobileState();
-  useLocationState();
 
   const isClient = useSetClientState();
 
@@ -38,16 +26,18 @@ const App: FC = () => {
   }
 
   return (
-    <Layout>
-      <Routes>
-        <Route path={ROUTE.TRADES} element={<TradesPage />} />
-        <Route path={ROUTE.APARTS} element={<ApartsPage />} />
-        <Route path={`${ROUTE.APART}/:regionCode/:apartName`} element={<ApartPage />} />
-        <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
-        <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
-      </Routes>
-    </Layout>
+    <RootProvider>
+      <Layout>
+        <Routes>
+          <Route path={ROUTE.TRADES} element={<TradesPage />} />
+          <Route path={ROUTE.APARTS} element={<ApartsPage />} />
+          <Route path={`${ROUTE.APART}/:regionCode/:apartName`} element={<ApartPage />} />
+          <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
+          <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
+        </Routes>
+      </Layout>
+    </RootProvider>
   );
 };
 
-export default withProvider(App);
+export default App;

@@ -12,7 +12,7 @@ export interface GetTradesListItem {
 }
 
 export interface GetTradesRequest {
-  cityCode: string;
+  regionCode: string;
   yearMonth: string;
 }
 

@@ -48,8 +48,8 @@ export const useTradeItems = ({ queryKey, originTradeItems }: Params): Return =>
   };
 
   const savedApartsInRegion = useMemo(
-    () => savedAparts.filter((item) => item.regionCode === queryKey.cityCode),
-    [queryKey.cityCode, savedAparts]
+    () => savedAparts.filter((item) => item.regionCode === queryKey.regionCode),
+    [queryKey.regionCode, savedAparts]
   );
 
   const tradeItems = useMemo(() => {

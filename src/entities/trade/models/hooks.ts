@@ -10,8 +10,8 @@ export const useGetTradesQuery = (params: GetTradesRequest): UseQueryResult<GetT
     queryKey: [PATH.TRADES_API, params],
     staleTime: 86_400,
     gcTime: 86_400,
-    enabled: !!params.cityCode && !!params.yearMonth,
-    queryFn: () => axios.get(`${PATH.TRADES_API}?cityCode=${params.cityCode}&yearMonth=${params.yearMonth}`),
+    enabled: !!params.regionCode && !!params.yearMonth,
+    queryFn: () => axios.get(`${PATH.TRADES_API}?regionCode=${params.regionCode}&yearMonth=${params.yearMonth}`),
     select: (res) => res.data,
   });
 };
@@ -21,7 +21,7 @@ export const useTradeQuery = (params: TradeQueryRequest): UseQueryResult<TradeQu
     queryKey: [PATH.TRADE_API, params],
     staleTime: 86_400,
     gcTime: 86_400,
-    queryFn: () => axios.get(`${PATH.TRADE_API}?cityCode=${params.cityCode}&apartName=${params.apartName}`),
+    queryFn: () => axios.get(`${PATH.TRADE_API}?regionCode=${params.cityCode}&apartName=${params.apartName}`),
     select: (res) => res.data,
   });
 };

@@ -160,7 +160,7 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<{ count: number; list: Record<string, unknown>[] } | { message: string }>
 ) => {
-  if (typeof req.query.cityCode !== "string" || typeof req.query.yearMonth !== "string") {
+  if (typeof req.query.regionCode !== "string" || typeof req.query.yearMonth !== "string") {
     return res.status(500).json({ message: "필수 파라미터가 누락되었습니다." });
   }
 
@@ -168,7 +168,7 @@ const handler = async (
   let list: Record<string, unknown>[] = [];
 
   for await (const result of createTradeListPerPage({
-    area: req.query.cityCode,
+    area: req.query.regionCode,
     createDt: req.query.yearMonth,
     page: 1,
   })) {

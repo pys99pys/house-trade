@@ -12,7 +12,7 @@ interface TradesPageProps {}
 const TradesPage: FC<TradesPageProps> = () => {
   const location = useLocation();
   const [queryKey, setQueryKey] = useState<GetTradesRequest>(
-    location.state?.queryKey ?? { cityCode: "", yearMonth: "" }
+    location.state?.queryKey ?? { regionCode: "", yearMonth: "" }
   );
 
   return (

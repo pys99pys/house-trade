@@ -21,7 +21,7 @@ const TradeListSearch: FC<TradeListSearchProps> = ({ setQueryKey }) => {
 
     onChangeForm(mergedForm);
     setQueryKey({
-      cityCode: mergedForm.regionCode,
+      regionCode: mergedForm.regionCode,
       yearMonth: mergedForm.year + mergedForm.month.toString().padStart(2, "0"),
     });
   };

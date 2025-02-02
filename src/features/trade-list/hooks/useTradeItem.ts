@@ -26,12 +26,12 @@ export const useTradeItem = ({ queryKey, page }: Params): Return => {
   const onSelectItem = (item: GetTradesListItem) => {
     // 상세 -> 목록으로 돌아왔을 때 기본값 세팅을 위해 state에 저장해둠
     navigate(ROUTE.TRADES, { replace: true, state: { queryKey, page } });
-    navigate(`${ROUTE.APART}/${queryKey.cityCode}/${item.apartName}`);
+    navigate(`${ROUTE.APART}/${queryKey.regionCode}/${item.apartName}`);
   };
 
   const onSaveApart = (item: GetTradesListItem) => {
     registSavedApart({
-      regionCode: queryKey.cityCode,
+      regionCode: queryKey.regionCode,
       address: item.address,
       apartName: item.apartName,
     });
@@ -41,7 +41,7 @@ export const useTradeItem = ({ queryKey, page }: Params): Return => {
 
   const onRemoveApart = (item: GetTradesListItem) => {
     removeSavedApart({
-      regionCode: queryKey.cityCode,
+      regionCode: queryKey.regionCode,
       address: item.address,
       apartName: item.apartName,
     });

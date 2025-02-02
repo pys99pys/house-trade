@@ -4,9 +4,7 @@ import { RecoilRoot } from "recoil";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-interface ProviderProps {}
-
-const Provider: FC<PropsWithChildren<ProviderProps>> = ({ children }) => {
+const RootProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <QueryClientProvider client={new QueryClient()}>
       <RecoilRoot>
@@ -16,4 +14,4 @@ const Provider: FC<PropsWithChildren<ProviderProps>> = ({ children }) => {
   );
 };
 
-export default Provider;
+export default RootProvider;

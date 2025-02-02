@@ -5,7 +5,6 @@ import { ROUTE } from "@/shared/consts";
 import Layout from "@/wigets/layout";
 
 import { useRegistNotifyPermmistion } from "./hooks/useRegistNotifyPermmistion";
-import { useSetClientState } from "./hooks/useSetClientState";
 import { useSetMobileState } from "./hooks/useSetMobileState";
 
 const TradesPage = lazy(() => import("@/pages/trades-page"));
@@ -16,12 +15,6 @@ const MigrationPage = lazy(() => import("@/pages/migration-page"));
 const App: FC = () => {
   useRegistNotifyPermmistion();
   useSetMobileState();
-
-  const isClient = useSetClientState();
-
-  if (!isClient) {
-    return null;
-  }
 
   return (
     <Layout>

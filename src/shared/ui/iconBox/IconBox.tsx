@@ -18,7 +18,7 @@ const IconBox: FC<IconBoxProps> = ({ type }) => {
           <i className={css.rotate}>
             <VscLoading />
           </i>
-          <p className="font-bold">로딩중</p>
+          <strong className="font-bold">로딩중</strong>
         </>
       )}
 

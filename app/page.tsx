@@ -1,9 +1,9 @@
 "use client";
 
-import App from "@/app";
+import Index from "@/app";
 
 const Page = () => {
-  return <App />;
+  return <Index />;
 };
 
 export default Page;

@@ -1,43 +1,22 @@
-import { FC, lazy } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { FC } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
-import { ROUTE } from "@/shared/consts";
 import "@/shared/styles/index.css";
-import Layout from "@/wigets/layout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { useRegistNotifyPermmistion } from "./hooks/useRegistNotifyPermmistion";
-import { useSetClientState } from "./hooks/useSetClientState";
-import { useSetMobileState } from "./hooks/useSetMobileState";
-import RootProvider from "./providers/RootProvider";
+import App from "./App";
 
-const TradesPage = lazy(() => import("@/pages/trades-page"));
-const ApartsPage = lazy(() => import("@/pages/aparts-page"));
-const ApartPage = lazy(() => import("@/pages/apart-page"));
-const MigrationPage = lazy(() => import("@/pages/migration-page"));
-
-const App: FC = () => {
-  useRegistNotifyPermmistion();
-  useSetMobileState();
-
-  const isClient = useSetClientState();
-
-  if (!isClient) {
-    return null;
-  }
-
+const Index: FC = () => {
   return (
-    <RootProvider>
-      <Layout>
-        <Routes>
-          <Route path={ROUTE.TRADES} element={<TradesPage />} />
-          <Route path={ROUTE.APARTS} element={<ApartsPage />} />
-          <Route path={`${ROUTE.APART}/:regionCode/:apartName`} element={<ApartPage />} />
-          <Route path={ROUTE.MIGRATION} element={<MigrationPage />} />
-          <Route path="/" element={<Navigate to={ROUTE.TRADES} />} />
-        </Routes>
-      </Layout>
-    </RootProvider>
+    <QueryClientProvider client={new QueryClient()}>
+      <RecoilRoot>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 };
 
-export default App;
+export default Index;

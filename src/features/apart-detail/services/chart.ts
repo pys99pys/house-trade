@@ -42,6 +42,10 @@ const createChartConfig = ({ labels, data }: { labels: string[]; data: number[] 
     data: chartData,
     options: {
       responsive: true,
+      interaction: {
+        mode: "nearest",
+        intersect: false,
+      },
       plugins: {
         tooltip: { enabled: true },
       },

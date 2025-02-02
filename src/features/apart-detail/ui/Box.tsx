@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import { FC, PropsWithChildren } from "react";
 
+import { Box as BaseBox } from "@/shared/ui";
+
 import css from "./Box.module.css";
 
 interface BoxProps {
@@ -10,10 +12,10 @@ interface BoxProps {
 
 const Box: FC<PropsWithChildren<BoxProps>> = ({ title, className, children }) => {
   return (
-    <div className={classNames(css.box, className, "box flex direction-column")}>
-      {title && <h2 className={classNames(css.title, "font-bold text-left")}>{title}</h2>}
+    <BaseBox className={classNames(css.box, className)}>
+      {title && <h2 className={css.title}>{title}</h2>}
       {children}
-    </div>
+    </BaseBox>
   );
 };
 

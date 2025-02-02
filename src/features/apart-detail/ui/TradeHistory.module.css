@@ -9,25 +9,32 @@
 
 .tradeHistory .row > span {
   padding: 1.25rem 0.5rem;
+  text-align: center;
 }
 
 .tradeHistory .header {
-  background-color: #f9f9f9;
+  background-color: var(--table-header-color);
 }
 
 .tradeHistory .body {
   max-height: 80vh;
   margin-top: 0.25rem;
+  display: flex;
+  flex-direction: column;
   row-gap: 0.25rem;
   overflow-y: auto;
 }
 
 .tradeHistory .body h2 {
   padding: 0.5rem;
-  background-color: #f9f9f9;
+  border: 1px solid var(--border-color);
+  background-color: var(--table-header-color);
+  text-align: center;
 }
 
-.tradeHistory .body > div {
+.tradeHistory .body .wrap {
+  display: flex;
+  flex-direction: column;
   row-gap: 0.25rem;
 }
 

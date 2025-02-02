@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import { FC } from "react";
 
 import { calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
-import { IconBox, Select, TextButton } from "@/shared/ui";
+import { Box, IconBox, Select, TextButton } from "@/shared/ui";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE, TABLE_HEADERS } from "../consts/table";
@@ -63,29 +62,23 @@ const ListItems: FC<ListItemsProps> = ({
             const apartInfo = calculateApartInfo(item);
 
             return (
-              <div
-                key={i}
-                className={classNames(css.row, "box activable flex justify-content-between", {
-                  active: item.isSaved,
-                })}
-                onClick={() => onSelectApart(item)}
-              >
-                <div className={classNames(css.apartInfoWrap, "flex direction-column")}>
-                  <span className="font-bold">
+              <Box key={i} className={css.row} active={item.isSaved} onClick={() => onSelectApart(item)}>
+                <div className={css.left}>
+                  <strong>
                     {item.apartName}({calculateFlatSize(item.size)}평)
-                  </span>
+                  </strong>
                   <span>{item.address}</span>
-                  {apartInfo && <small className="font-small">{apartInfo}</small>}
+                  {apartInfo && <small>{apartInfo}</small>}
                 </div>
-                <div className="flex direction-column justify-content-between">
-                  <div className={classNames(css.priceInfoWrap, "flex direction-column align-items-end")}>
-                    <span className="font-bold text-primary">
+                <div className={css.right}>
+                  <div className={css.priceInfoWrap}>
+                    <strong>
                       {calculateTradeAmountFormat(item.tradeAmount)}
                       {item.isNewRecord && item.maxTradeAmount > 0 && "(신)"}
-                    </span>
-                    <span className="font-small">{item.tradeDate}</span>
+                    </strong>
+                    <small>{item.tradeDate}</small>
                   </div>
-                  <div className="flex justify-content-end">
+                  <div className={css.buttonWrap}>
                     {item.isSaved && (
                       <TextButton
                         color="red"
@@ -110,7 +103,7 @@ const ListItems: FC<ListItemsProps> = ({
                     )}
                   </div>
                 </div>
-              </div>
+              </Box>
             );
           })}
       </div>

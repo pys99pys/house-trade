@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { FC, useState } from "react";
 
 import { STORAGE_KEY } from "@/shared/consts";
@@ -36,7 +35,7 @@ const MigrationForm: FC<MigrationFormProps> = () => {
   };
 
   return (
-    <form className={classNames(css.migrationForm, "flex direction-column")}>
+    <form className={css.migrationForm}>
       <FormItem label="데이터 복사">
         <Button color="primary" onClick={onCopy}>
           데이터 복사

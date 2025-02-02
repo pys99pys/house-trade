@@ -4,7 +4,9 @@
 }
 
 .box .title {
+  margin-bottom: 1rem;
   font-size: 1.05rem;
+  text-align: left;
 }
 
 @media (max-width: 640px) {

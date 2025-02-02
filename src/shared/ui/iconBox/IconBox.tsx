@@ -1,7 +1,8 @@
-import classNames from "classnames";
 import { FC } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { VscLoading } from "react-icons/vsc";
+
+import { Box } from "@/shared/ui";
 
 import css from "./IconBox.module.css";
 
@@ -11,7 +12,7 @@ interface IconBoxProps {
 
 const IconBox: FC<IconBoxProps> = ({ type }) => {
   return (
-    <div className={classNames(css.iconBox, "box flex direction-column justify-content-center align-items-center")}>
+    <Box className={css.iconBox}>
       {type === "loading" && (
         <>
           <i className={css.rotate}>
@@ -26,10 +27,10 @@ const IconBox: FC<IconBoxProps> = ({ type }) => {
           <i>
             <RiErrorWarningLine />
           </i>
-          <p className="font-bold">데이터 없음</p>
+          <strong>데이터 없음</strong>
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

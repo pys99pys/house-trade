@@ -12,14 +12,34 @@
 
 .listItems .body .row {
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
-.listItems .body .row .apartInfoWrap {
+.listItems .body .row .left {
+  display: flex;
+  flex-direction: column;
   row-gap: 0.5rem;
 }
 
-.listItems .body .row .priceInfoWrap {
+.listItems .body .row .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.listItems .body .row .right .priceInfoWrap {
+  display: flex;
+  flex-direction: column;
   row-gap: 0.25rem;
+}
+
+.listItems .body .row .right .priceInfoWrap strong {
+  color: var(--primary-color);
+}
+
+.listItems .body .row .right .buttonWrap {
+  text-align: right;
 }
 
 .listItems .pagination {

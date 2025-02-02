@@ -1,9 +1,13 @@
 .apartList {
+  display: flex;
+  flex-direction: column;
   row-gap: 1.5rem;
 }
 
-.apartList dd {
+.apartList .list {
   margin-top: 0.75rem;
   padding: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }

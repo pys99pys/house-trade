@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { FC } from "react";
 
 import { calculateAreaSize, calculateFlatSize, calculateTradeAmountFormat } from "@/entities/trade";
-import { IconBox, TextButton } from "@/shared/ui";
+import { Box, IconBox, TextButton } from "@/shared/ui";
 import Pagination from "@/shared/ui/pagination/Pagination";
 
 import { PER_PAGE, TABLE_HEADERS } from "../consts/table";
@@ -45,10 +45,7 @@ const ListTable: FC<ListTableProps> = ({
       <div className={css.header}>
         {TABLE_HEADERS.map((item) => (
           <div key={item.key} className={css.cell}>
-            <button
-              className={classNames(css.button, "flex justify-content-center align-items-center small-gap")}
-              onClick={() => onChangeOrder(item.key)}
-            >
+            <button className={css.button} onClick={() => onChangeOrder(item.key)}>
               {item.label}
               {order[0] === item.key && <span className={css[order[1]]}>▾</span>}
             </button>
@@ -61,16 +58,12 @@ const ListTable: FC<ListTableProps> = ({
       {isEmpty && <IconBox type="empty" />}
 
       {totalCount > 0 && (
-        <div className={classNames(css.body, "flex direction-column default-gap")}>
+        <div className={css.body}>
           {tradeItems.map((item, i) => {
             const apartInfo = calculateApartInfo(item);
 
             return (
-              <div
-                key={i}
-                className={classNames(css.row, { [css.active]: item.isSaved })}
-                onClick={() => onSelectApart(item)}
-              >
+              <Box key={i} hoverable className={css.row} active={item.isSaved} onClick={() => onSelectApart(item)}>
                 <div className={css.cell}>{item.tradeDate}</div>
                 <div className={css.cell}>{item.address}</div>
                 <div className={css.cell}>
@@ -113,7 +106,7 @@ const ListTable: FC<ListTableProps> = ({
                     </TextButton>
                   )}
                 </div>
-              </div>
+              </Box>
             );
           })}
         </div>

@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import { FC } from "react";
 
 import { getCityNameFromRegionCode, getRegionNameFromRegionCode } from "@/entities/region";
-import { Label } from "@/shared/ui";
+import { Box, Label } from "@/shared/ui";
 
 import { useApartList } from "../hooks/useApartList";
 import css from "./ApartList.module.css";
@@ -13,21 +12,21 @@ const ApartList: FC<ApartListProps> = () => {
   const { apartItems, onClick, onRemove } = useApartList();
 
   return (
-    <div className={classNames(css.apartList, "flex direction-column")}>
+    <div className={css.apartList}>
       {apartItems.map((item) => (
-        <dl key={item.regionCode}>
-          <dt className="font-bold">
+        <div key={item.regionCode}>
+          <h2>
             {getCityNameFromRegionCode(item.regionCode)} {getRegionNameFromRegionCode(item.regionCode)} (
             <span>{item.children.length})</span>
-          </dt>
-          <dd className="box flex wrap">
+          </h2>
+          <Box className={css.list}>
             {item.children.map((_item) => (
               <Label key={JSON.stringify(_item)} onClick={() => onClick(_item)} onRemove={() => onRemove(_item)}>
                 {_item.apartName}
               </Label>
             ))}
-          </dd>
-        </dl>
+          </Box>
+        </div>
       ))}
     </div>
   );

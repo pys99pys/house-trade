@@ -7,6 +7,10 @@
 .listTable .header .cell .button {
   width: 100%;
   padding: 1.5rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.25rem;
   border: none;
   background-color: transparent;
   text-align: left;
@@ -26,22 +30,16 @@
   transform: rotate(0deg) translateY(-2px);
 }
 
+.listTable .body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+}
+
 .listTable .body .row {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1.5fr 0.75fr 0.5fr 0.5fr 0.35fr;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: white;
   transition: border-color 300ms ease;
-}
-
-.listTable .body .row:hover {
-  border: 1px solid var(--primary-color);
-  cursor: pointer;
-}
-
-.listTable .body .row.active {
-  border-color: var(--primary-color);
 }
 
 .listTable .body .row .cell {

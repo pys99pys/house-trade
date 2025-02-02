@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { FC } from "react";
 
 import { getCityNames, getRegionsFromCityName } from "@/entities/region";
@@ -26,13 +25,13 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, onChangeForm, onR
 
   return (
     <form
-      className={classNames(css.searchForm, "flex default-gap", { "direction-column": isMobile })}
+      className={css.searchForm}
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit();
       }}
     >
-      <div className="flex default-gap">
+      <div className={css.selectWrap}>
         <Select
           value={form.cityName}
           onChange={(cityName) => onChangeForm({ cityName, regionCode: getRegionsFromCityName(cityName)[0].code })}
@@ -51,10 +50,10 @@ const SearchForm: FC<SearchFormProps> = ({ form, savedRegions, onChangeForm, onR
           ))}
         </Select>
       </div>
-      <div className="flex default-gap">
+      <div className={css.monthPickerWrap}>
         <MonthPicker year={form.year} month={form.month} onChange={(year, month) => onChangeForm({ year, month })} />
       </div>
-      <div className={classNames(css.buttonWrap, "flex default-gap")}>
+      <div className={css.buttonWrap}>
         <Button type="submit" color="primary">
           검색
         </Button>

@@ -1,4 +1,16 @@
+.searchForm,
+.searchForm .selectWrap,
+.searchForm .monthPickerWrap,
+.searchForm .buttonWrap {
+  display: flex;
+  gap: 0.5rem;
+}
+
 @media (max-width: 640px) {
+  .searchForm {
+    flex-direction: column;
+  }
+
   .searchForm .buttonWrap button {
     width: 100%;
   }

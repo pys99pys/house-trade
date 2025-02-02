@@ -1,0 +1,15 @@
+.box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--white-color);
+}
+
+.box.hoverable {
+  transition: border-color 300ms ease;
+  cursor: pointer;
+}
+
+.box.active,
+.box.hoverable:hover {
+  border-color: var(--primary-color);
+}

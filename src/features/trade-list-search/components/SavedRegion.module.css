@@ -1,4 +1,6 @@
 .savedRegion {
+  display: flex;
+  column-gap: 0.25rem;
   overflow-x: auto;
   scrollbar-width: none;
 }

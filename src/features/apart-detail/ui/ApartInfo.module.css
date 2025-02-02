@@ -9,7 +9,8 @@
 .apartInfo table th {
   width: 20%;
   min-width: 8.5rem;
-  background-color: #f9f9f9;
+  background-color: var(--table-header-color);
+  text-align: left;
 }
 
 .apartInfo table th,

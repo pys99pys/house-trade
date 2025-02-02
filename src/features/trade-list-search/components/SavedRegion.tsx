@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { FC } from "react";
 
 import { getCityNameFromRegionCode, getRegionNameFromRegionCode } from "@/entities/region";
@@ -15,7 +14,7 @@ interface SavedRegionProps {
 
 const SavedRegion: FC<SavedRegionProps> = ({ savedRegions, onRemoveRegion, onSubmit }) => {
   return (
-    <ul className={classNames(css.savedRegion, "flex", "small-gap")}>
+    <ul className={css.savedRegion}>
       {savedRegions.map((regionCode) => (
         <li key={regionCode}>
           <Label onClick={() => onSubmit({ regionCode })} onRemove={() => onRemoveRegion(regionCode)}>

@@ -7,6 +7,7 @@ import { useSearchForm } from "../hooks/useSearchForm";
 import { OnSubmitHandler } from "../models/types";
 import SavedRegion from "./SavedRegion";
 import SearchForm from "./SearchForm";
+import css from "./TradeListSearch.module.css";
 
 interface TradeListSearchProps {
   setQueryKey: (queryKey: GetTradesRequest) => void;
@@ -27,7 +28,7 @@ const TradeListSearch: FC<TradeListSearchProps> = ({ setQueryKey }) => {
   };
 
   return (
-    <>
+    <div className={css.tradeListSearch}>
       <div>
         <SearchForm
           savedRegions={savedRegions}
@@ -37,10 +38,10 @@ const TradeListSearch: FC<TradeListSearchProps> = ({ setQueryKey }) => {
           onSubmit={onSubmit}
         />
       </div>
-      <div className="default-mt">
+      <div>
         <SavedRegion savedRegions={savedRegions} onRemoveRegion={onRemoveRegion} onSubmit={onSubmit} />
       </div>
-    </>
+    </div>
   );
 };
 

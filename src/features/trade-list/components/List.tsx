@@ -1,9 +1,10 @@
 import { FC, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import { GetTradesListItem, GetTradesRequest, useGetTradesQuery } from "@/entities/trade";
 import { useIsMobile } from "@/shared/models";
 
-import { useApartItem } from "../hooks/useApartItem";
+import { useTradeItem } from "../hooks/useTradeItem";
 import { useTradeItems } from "../hooks/useTradeItems";
 import { FilterType } from "../models/types";
 import ListItems from "../ui/ListItems";
@@ -20,16 +21,19 @@ const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter })
 
   const { tradeItems, page, order, onChangePage, onChangeOrder } = useTradeItems({
     queryKey,
-    tradeItems: originTradeItems,
+    originTradeItems,
   });
 
-  const { onSelectApart, onSaveApart, onRemoveApart } = useApartItem({ queryKey });
+  const { onSelectItem, onSaveApart, onRemoveApart } = useTradeItem({ queryKey, page });
 
+  const location = useLocation();
   const isMobile = useIsMobile();
   const totalCount = originTradeItems.length;
 
   useEffect(() => {
-    onChangePage(1);
+    if (!location.state?.page) {
+      onChangePage(1);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryKey, filter]);
 
@@ -42,7 +46,7 @@ const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter })
       order={order}
       onChangePage={onChangePage}
       onChangeOrder={onChangeOrder}
-      onSelectApart={onSelectApart}
+      onSelectApart={onSelectItem}
       onSaveApart={onSaveApart}
       onRemoveApart={onRemoveApart}
     />
@@ -55,7 +59,7 @@ const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter })
       order={order}
       onChangePage={onChangePage}
       onChangeOrder={onChangeOrder}
-      onSelectApart={onSelectApart}
+      onSelectApart={onSelectItem}
       onSaveApart={onSaveApart}
       onRemoveApart={onRemoveApart}
     />

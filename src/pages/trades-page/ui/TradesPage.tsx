@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import { FC, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { GetTradesRequest } from "@/entities/trade";
 import { TradeList } from "@/features/trade-list";
@@ -10,7 +10,10 @@ import css from "./TradesPage.module.css";
 interface TradesPageProps {}
 
 const TradesPage: FC<TradesPageProps> = () => {
-  const [queryKey, setQueryKey] = useState<GetTradesRequest>({ cityCode: "", yearMonth: "" });
+  const location = useLocation();
+  const [queryKey, setQueryKey] = useState<GetTradesRequest>(
+    location.state?.queryKey ?? { cityCode: "", yearMonth: "" }
+  );
 
   return (
     <div className={css.tradesPage}>

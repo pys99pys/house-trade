@@ -5,6 +5,7 @@ import { ROUTE } from "@/shared/consts";
 import "@/shared/styles/index.css";
 import Layout from "@/wigets/layout";
 
+import { useLocationState } from "./hooks/useLocationState";
 import { useRegistNotifyPermmistion } from "./hooks/useRegistNotifyPermmistion";
 import { useSetClientState } from "./hooks/useSetClientState";
 import { useSetMobileState } from "./hooks/useSetMobileState";
@@ -28,6 +29,7 @@ const withProvider = (Component: FC): FC => {
 const App: FC = () => {
   useRegistNotifyPermmistion();
   useSetMobileState();
+  useLocationState();
 
   const isClient = useSetClientState();
 

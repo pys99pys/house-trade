@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { useSavedAparts } from "@/entities/apart";
 import { GetTradesListItem, GetTradesRequest } from "@/entities/trade";
@@ -9,7 +10,7 @@ import { compareSavedApart, sliceItems, sortItems } from "../services/filters";
 
 interface Params {
   queryKey: GetTradesRequest;
-  tradeItems: GetTradesListItem[];
+  originTradeItems: GetTradesListItem[];
 }
 
 interface Return {
@@ -20,10 +21,11 @@ interface Return {
   onChangeOrder: (column: OrderType[0], direction?: OrderType[1]) => void;
 }
 
-export const useTradeItems = ({ queryKey, tradeItems: originTradeItems }: Params): Return => {
+export const useTradeItems = ({ queryKey, originTradeItems }: Params): Return => {
+  const location = useLocation();
   const savedAparts = useSavedAparts();
 
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(location.state?.page ?? 1);
   const [order, setOrder] = useState<OrderType>(["tradeDate", "desc"]);
 
   const onChangePage = (nextPage: number) => {

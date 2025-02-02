@@ -8,21 +8,24 @@ import { notification } from "@/shared/lib";
 
 interface Params {
   queryKey: GetTradesRequest;
+  page: number;
 }
 
 interface Return {
-  onSelectApart: (item: GetTradesListItem) => void;
+  onSelectItem: (item: GetTradesListItem) => void;
   onSaveApart: (item: GetTradesListItem) => void;
   onRemoveApart: (item: GetTradesListItem) => void;
 }
 
-export const useApartItem = ({ queryKey }: Params): Return => {
+export const useTradeItem = ({ queryKey, page }: Params): Return => {
   const navigate = useNavigate();
 
   const registSavedApart = useRegistSavedApart();
   const removeSavedApart = useRemoveSavedApart();
 
-  const onSelectApart = (item: GetTradesListItem) => {
+  const onSelectItem = (item: GetTradesListItem) => {
+    // 상세 -> 목록으로 돌아왔을 때 기본값 세팅을 위해 state에 저장해둠
+    navigate(ROUTE.TRADES, { replace: true, state: { queryKey, page } });
     navigate(`${ROUTE.APART}/${queryKey.cityCode}/${item.apartName}`);
   };
 
@@ -46,5 +49,5 @@ export const useApartItem = ({ queryKey }: Params): Return => {
     notification("삭제 완료", `[${item.apartName}] 저장 목록에서 삭제되었습니다.`);
   };
 
-  return { onSelectApart, onSaveApart, onRemoveApart };
+  return { onSelectItem, onSaveApart, onRemoveApart };
 };

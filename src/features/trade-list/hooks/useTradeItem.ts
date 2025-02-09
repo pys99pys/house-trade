@@ -26,7 +26,10 @@ export const useTradeItem = ({ queryKey, page }: Params): Return => {
   const onSelectItem = (item: GetTradesResponseListItem) => {
     // 상세 -> 목록으로 돌아왔을 때 기본값 세팅을 위해 state에 저장해둠
     navigate(ROUTE.TRADES, { replace: true, state: { queryKey, page } });
-    navigate(`${ROUTE.APART}/${queryKey.regionCode}/${item.apartName}`);
+
+    setTimeout(() => {
+      navigate(`${ROUTE.APART}/${queryKey.regionCode}/${item.apartName}`);
+    }, 100);
   };
 
   const onSaveApart = (item: GetTradesResponseListItem) => {

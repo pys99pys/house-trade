@@ -18,7 +18,7 @@ interface ListTableProps {
   order: OrderType;
   onChangePage: (page: number) => void;
   onChangeOrder: (orderColumn: OrderType[0]) => void;
-  onSelectApart: (item: TradeItem) => void;
+  onSelectItem: (item: TradeItem) => void;
   onSaveApart: (item: TradeItem) => void;
   onRemoveApart: (item: TradeItem) => void;
 }
@@ -33,7 +33,7 @@ const ListTable: FC<ListTableProps> = ({
   order,
   onChangePage,
   onChangeOrder,
-  onSelectApart,
+  onSelectItem,
   onSaveApart,
   onRemoveApart,
 }) => {
@@ -63,7 +63,7 @@ const ListTable: FC<ListTableProps> = ({
             const apartInfo = calculateApartInfo(item);
 
             return (
-              <Box key={i} hoverable className={css.row} active={item.isSaved} onClick={() => onSelectApart(item)}>
+              <Box key={i} hoverable className={css.row} active={item.isSaved} onClick={() => onSelectItem(item)}>
                 <div className={css.cell}>{item.tradeDate}</div>
                 <div className={css.cell}>{item.address}</div>
                 <div className={css.cell}>
@@ -88,7 +88,7 @@ const ListTable: FC<ListTableProps> = ({
                       color="red"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onSaveApart(item);
+                        onRemoveApart(item);
                       }}
                     >
                       삭제
@@ -99,7 +99,7 @@ const ListTable: FC<ListTableProps> = ({
                       color="primary"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onRemoveApart(item);
+                        onSaveApart(item);
                       }}
                     >
                       저장

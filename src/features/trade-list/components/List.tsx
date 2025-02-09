@@ -37,33 +37,20 @@ const List: FC<ListProps> = ({ tradeItems: originTradeItems, queryKey, filter })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryKey, filter]);
 
-  return isMobile ? (
-    <ListItems
-      isLoading={isLoading}
-      totalCount={totalCount}
-      tradeItems={tradeItems}
-      page={page}
-      order={order}
-      onChangePage={onChangePage}
-      onChangeOrder={onChangeOrder}
-      onSelectApart={onSelectItem}
-      onSaveApart={onSaveApart}
-      onRemoveApart={onRemoveApart}
-    />
-  ) : (
-    <ListTable
-      isLoading={isLoading}
-      totalCount={totalCount}
-      tradeItems={tradeItems}
-      page={page}
-      order={order}
-      onChangePage={onChangePage}
-      onChangeOrder={onChangeOrder}
-      onSelectApart={onSelectItem}
-      onSaveApart={onSaveApart}
-      onRemoveApart={onRemoveApart}
-    />
-  );
+  const props = {
+    isLoading,
+    totalCount,
+    tradeItems,
+    page,
+    order,
+    onChangePage,
+    onChangeOrder,
+    onSelectItem,
+    onSaveApart,
+    onRemoveApart,
+  };
+
+  return isMobile ? <ListItems {...props} /> : <ListTable {...props} />;
 };
 
 export default List;

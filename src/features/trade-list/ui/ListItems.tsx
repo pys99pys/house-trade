@@ -17,7 +17,7 @@ interface ListItemsProps {
   order: OrderType;
   onChangePage: (page: number) => void;
   onChangeOrder: (orderColumn: OrderType[0], orderDirection: OrderType[1]) => void;
-  onSelectApart: (item: TradeItem) => void;
+  onSelectItem: (item: TradeItem) => void;
   onSaveApart: (item: TradeItem) => void;
   onRemoveApart: (item: TradeItem) => void;
 }
@@ -32,7 +32,7 @@ const ListItems: FC<ListItemsProps> = ({
   order,
   onChangePage,
   onChangeOrder,
-  onSelectApart,
+  onSelectItem,
   onSaveApart,
   onRemoveApart,
 }) => {
@@ -62,7 +62,7 @@ const ListItems: FC<ListItemsProps> = ({
             const apartInfo = calculateApartInfo(item);
 
             return (
-              <Box key={i} className={css.row} active={item.isSaved} onClick={() => onSelectApart(item)}>
+              <Box key={i} className={css.row} active={item.isSaved} onClick={() => onSelectItem(item)}>
                 <div className={css.left}>
                   <strong>
                     {item.apartName}({calculateFlatSize(item.size)}평)

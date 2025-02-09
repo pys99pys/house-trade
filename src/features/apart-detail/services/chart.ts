@@ -47,12 +47,20 @@ const createChartConfig = ({ labels, data }: { labels: string[]; data: number[] 
         intersect: false,
       },
       plugins: {
-        tooltip: { enabled: true },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: (tooltipItem) =>
+              typeof tooltipItem.raw === "number"
+                ? `${Math.floor((tooltipItem.raw / 100) * 10) / 10}억`
+                : tooltipItem.raw,
+          },
+        },
       },
       scales: {
         y: {
           ticks: {
-            callback: (value) => (typeof value === "number" ? `${value / 10}억` : value),
+            callback: (value) => (typeof value === "number" ? `${value / 100}억` : value),
             font: { size: 10 },
           },
         },

@@ -53,7 +53,7 @@ const createChartConfig = ({ labels, data }: { labels: string[]; data: number[] 
             label: (tooltipItem) =>
               typeof tooltipItem.raw === "number"
                 ? `${Math.floor((tooltipItem.raw / 100) * 10) / 10}억`
-                : tooltipItem.raw,
+                : String(tooltipItem.raw),
           },
         },
       },

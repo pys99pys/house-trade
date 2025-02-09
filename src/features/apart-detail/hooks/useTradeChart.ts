@@ -16,7 +16,7 @@ export const useTradeChart = ({ tradeItems }: Params): Return => {
     return tradeItems
       .reverse()
       .reduce((acc: { month: string; totalAmounts: number[] }[], item: { tradeDate: string; tradeAmount: number }) => {
-        const yearMonth = item.tradeDate.substring(0, 7);
+        const yearMonth = item.tradeDate.substring(2, 7).replace("-", "/");
         const currentMonthItem = acc.find((accItem) => accItem.month === yearMonth);
 
         if (currentMonthItem) {

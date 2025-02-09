@@ -32,7 +32,7 @@ const createChartConfig = ({ labels, data }: { labels: string[]; data: number[] 
         backgroundColor: "#6366f1",
         borderWidth: 2,
         pointRadius: 2,
-        tension: 0.2,
+        tension: 0.1,
       },
     ],
   };
@@ -48,6 +48,19 @@ const createChartConfig = ({ labels, data }: { labels: string[]; data: number[] 
       },
       plugins: {
         tooltip: { enabled: true },
+      },
+      scales: {
+        y: {
+          ticks: {
+            callback: (value) => (typeof value === "number" ? `${value / 10}억` : value),
+            font: { size: 10 },
+          },
+        },
+        x: {
+          ticks: {
+            font: { size: 10 },
+          },
+        },
       },
     },
   };

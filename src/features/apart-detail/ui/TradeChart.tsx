@@ -28,7 +28,7 @@ const TradeChart: FC<TradeChartProps> = ({ tradeItems }) => {
   }, [chartData]);
 
   return (
-    <Box title="월별 실거래가(단위: 백만원)" className={css.tradeChart}>
+    <Box title="월별 실거래가" className={css.tradeChart}>
       <div className={css.chartWrap}>
         <div className={css.canvasWrap}>
           <canvas id="trade-chart" />

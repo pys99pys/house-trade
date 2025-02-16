@@ -77,7 +77,7 @@ const TradeHistory: FC<TradeHistoryProps> = ({ tradeItems: originTradeItems }) =
               <Fragment key={item.year}>
                 <h2
                   className={css.year}
-                  style={{ top: index === 0 ? "2px" : `${index * 24 + 2}px` }}
+                  style={{ top: index === 0 ? "-1px" : `${index * 24 - 1}px` }}
                   onClick={onClickYear}
                 >
                   {item.year}년({item.items.length})

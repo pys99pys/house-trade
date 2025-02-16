@@ -10,7 +10,7 @@ interface Return {
   tradeItems: { year: string; items: GetApartResponseTradeItem[] }[];
 }
 
-export const useTradeHistory = ({ originTradeItems }: Params): Return => {
+export const useTradeHistoryData = ({ originTradeItems }: Params): Return => {
   const years = useMemo(() => {
     return originTradeItems.reduce((acc: string[], item: { tradeDate: string }) => {
       const year = item.tradeDate.slice(0, 4);
@@ -28,7 +28,7 @@ export const useTradeHistory = ({ originTradeItems }: Params): Return => {
       year,
       items: originTradeItems.filter((item) => item.tradeDate.startsWith(year)) ?? [],
     }));
-  }, [years]);
+  }, [years, originTradeItems]);
 
   return { tradeItems };
 };
